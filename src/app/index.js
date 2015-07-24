@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Router, { Route, Link, RouteHandler } from 'react-router';
 
-import App from './app';
+import Main from './structure/main';
+
+import ArticleCollection from './structure/article-collection';
 
 require('./app.scss');
 
 const routes = (
-  <Route handler={App}>
+  <Route handler={Main}>
+    <Route path="/" handler={ArticleCollection}/>
   </Route>
 );
 
