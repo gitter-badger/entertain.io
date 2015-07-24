@@ -30,7 +30,7 @@ module.exports = {
   module: {
     loaders: [{
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: 'style-loader!css-loader!sass-loader'
       },{
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel'],
