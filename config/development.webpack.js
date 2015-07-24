@@ -33,7 +33,7 @@ module.exports = {
         loader: 'style-loader!css-loader!sass-loader'
       },{
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['react-hot-loader', 'babel-loader'],
         include: path.resolve('src/app')
       }
     ]
