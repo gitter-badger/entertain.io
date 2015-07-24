@@ -1,0 +1,19 @@
+{
+  "name": "entertain.io",
+  "version": "1.0.0",
+  "description": "Your daily dose of entertainment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EntertainIO/entertain.io.git"
+  },
+  "author": "Jonathan Häberle <jonathan.haeberle@gmail.com> (http://dreampulse.de/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EntertainIO/entertain.io/issues"
+  },
+  "homepage": "http://entertain.io"
+}
