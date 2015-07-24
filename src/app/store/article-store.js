@@ -11,7 +11,7 @@ class ArticleStore extends EventEmitter {
 
   addArticle(article) {
     this.articles.push(article);
-    this.emit('new-article', article);
+    this.emit('change');
   }
 
   constructor() {
@@ -30,10 +30,6 @@ class ArticleStore extends EventEmitter {
       }
 
       return true;
-    });
-
-    this.on('new-article', (a) => {
-        console.log("i emitted a new article", a);
     });
   }
 
