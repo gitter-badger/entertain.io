@@ -9,6 +9,7 @@ export default class extends Component {
       <div className="structure--main">
         <div className="header">
           <Link to="/">Article-Collection</Link>
+          <Link to="/add">Add Article</Link>
         </div>
         <div className="body">
           <RouteHandler/>

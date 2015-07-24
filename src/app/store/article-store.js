@@ -3,7 +3,11 @@ import EventEmitter from 'wolfy87-eventemitter';
 
 class ArticleStore extends EventEmitter {
 
-  articles = [];
+  articles = [{
+    title : 'Test Article',
+    teaser : 'This is a test Article',
+    url : 'http://test.com'
+  }];
 
   addArticle(article) {
     this.articles.push(article);
