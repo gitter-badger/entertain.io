@@ -1,4 +1,58 @@
 .structure--main {
-  .header {}
-  .body {}
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+  .header {
+    @extend %header;
+  }
+
+  .body {
+    min-width: 100%;
+    flex-grow: 1;
+    overflow: auto;
+    background: #F5F5F5;
+  }
+  .footer {
+    height: 40px;
+    min-height: 40px;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.4);
+    display: flex;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+%header {
+  background: #fff;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,0.4);
+  height: 60px;
+  min-height: 60px;
+  align-items: center;
+  display: flex;
+  padding: 0 20px;
+  justify-content: flex-start;
+  flex-direction: row;
+  position: relative;
+  z-index: 10;
+
+  .logo {
+    display: inline-block;
+    font-family: 'Open Sans';
+    font-size: 1.250em;
+    font-weight: bold;
+    text-decoration: none;
+    .entertain-part {
+      color: #002d49;
+    }
+    .io-part {
+      color: #00b9ee;
+    }
+  }
 }
