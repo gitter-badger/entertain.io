@@ -1,7 +1,7 @@
-import DevServer from './services/dev-server.js';
+import DevServer from './services/dev-server';
 
 if (process.env.NODE_ENV !== 'production') {
-  DevServer();
+  new DevServer();
 } else {
   throw new Error('@TODO');
 }

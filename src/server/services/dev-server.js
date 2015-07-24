@@ -5,18 +5,19 @@ import config from '../../../config/development.webpack';
 
 const PORT = 3000 || process.env.PORT;
 
-export default function() {
+export default class {
 
-  new WebpackDevServer(webpack(config), {
-    publicPath: config.output.publicPath,
-    hot: true,
-    historyApiFallback: true,
-    contentBase: path.resolve('dist')
-  }).listen(PORT, 'localhost', (err) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(`Listening at localhost:${PORT}`);
-  });
-
+  constructor() {
+    new WebpackDevServer(webpack(config), {
+      publicPath: config.output.publicPath,
+      hot: true,
+      historyApiFallback: true,
+      contentBase: path.resolve('dist')
+    }).listen(PORT, 'localhost', (err) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log(`Listening at localhost:${PORT}`);
+      });
+  }
 }
