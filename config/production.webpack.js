@@ -33,7 +33,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass?sourceMap")
       },{
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader?stage=0'],
         include: path.resolve('src/app')
       }
     ]
