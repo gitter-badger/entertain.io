@@ -3,12 +3,6 @@ import EventEmitter from 'wolfy87-eventemitter';
 
 class ArticleStore extends EventEmitter {
 
-  articles = [{
-    title : 'Test Article',
-    teaser : 'This is a test Article',
-    url : 'http://test.com'
-  }];
-
   addArticle(article) {
     this.articles.push(article);
     this.emit('change');
@@ -16,6 +10,12 @@ class ArticleStore extends EventEmitter {
 
   constructor() {
     super();
+
+    this.articles = [{
+      title : 'Test Article',
+      teaser : 'This is a test Article',
+      url : 'http://test.com'
+    }];
 
     Dispatcher.register((payload) => {
 
