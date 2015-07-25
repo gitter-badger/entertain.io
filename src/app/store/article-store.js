@@ -1,4 +1,4 @@
-import EventEmitter from 'wolfy87-eventemitter';
+import {EventEmitter} from 'events';
 
 export default function create(Dispatcher) {
 
@@ -10,28 +10,24 @@ export default function create(Dispatcher) {
       url: 'http://test.com'
     }];
 
+    dispatchToken = Dispatcher.register((payload) => {
+
+      console.log("dispatcher called", payload);
+
+      switch (payload.eventName) {
+
+        case 'new-article':
+          this.addArticle(payload.article);
+          break;
+
+      }
+
+      return true;
+    });
+
     addArticle(article) {
       this.articles.push(article);
       this.emit('change');
-    }
-
-    constructor() {
-      super();
-
-      Dispatcher.register((payload) => {
-
-        console.log("dispatcher called", payload);
-
-        switch (payload.eventName) {
-
-          case 'new-article':
-            this.addArticle(payload.article);
-            break;
-
-        }
-
-        return true;
-      });
     }
 
   }

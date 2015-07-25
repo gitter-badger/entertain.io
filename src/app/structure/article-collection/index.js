@@ -20,7 +20,7 @@ export default function create(ArticleStore, Article) {
     }
 
     componentWillUnmount() {
-      ArticleStore.off('change', this.articleListChanged);
+      ArticleStore.removeListener('change', this.articleListChanged);
     }
 
     render() {
