@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 require('./style.scss');
 
-export default function create(Dispatcher, ArticleStore) {
+export default function create(ArticleAction, ArticleStore) {
 
   class AddArticle extends Component {
 
@@ -20,12 +20,8 @@ export default function create(Dispatcher, ArticleStore) {
 
     add(event) {
       event.preventDefault();
-      console.log("submit", this.state);
 
-      Dispatcher.dispatch({
-        eventName: 'new-article',
-        article: this.state
-      });
+      ArticleAction.addArticle(this.state);
     }
 
     render() {

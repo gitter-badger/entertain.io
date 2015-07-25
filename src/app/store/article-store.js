@@ -12,11 +12,9 @@ export default function create(Dispatcher) {
 
     dispatchToken = Dispatcher.register((payload) => {
 
-      console.log("dispatcher called", payload);
-
       switch (payload.eventName) {
 
-        case 'new-article':
+        case 'add-article':
           this.addArticle(payload.article);
           break;
 

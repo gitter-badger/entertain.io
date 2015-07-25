@@ -24,7 +24,6 @@ export default function create(ArticleStore, Article) {
     }
 
     render() {
-      console.log("this.state", this.state);
 
       return (
         <section className="structure--article-container">
