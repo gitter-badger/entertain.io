@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node --stage 0",
-    "develop": "nodemon --exec npm run babel-node -- src/server"
+    "develop": "nodemon --exec npm run babel-node -- src/server",
+    "production-build": "rimraf dist && webpack --config config/production.webpack.js"
   },
   "repository": {
     "type": "git",
