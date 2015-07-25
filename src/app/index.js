@@ -9,7 +9,7 @@ import ArticleCollectionStructure from './structure/article-collection';
 import AddArticleComponent from './component/add-article';
 import ArticleComponent from './component/article';
 
-import Router from './router';
+import Router from './router/router';
 
 
 // create instances
