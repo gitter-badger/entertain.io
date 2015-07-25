@@ -1,14 +1,7 @@
 import * as Flux from 'flux';
 
-class Dispatcher {
+export default function create() {
 
-  constructor() {
-    this.appDispatcher = new Flux.Dispatcher();
-  }
+  return new Flux.Dispatcher();
 
-  getDispatcher() {
-    return this.appDispatcher;
-  }
 }
-
-export default new Dispatcher().getDispatcher();

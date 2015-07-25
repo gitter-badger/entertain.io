@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
-import Router, { Route, Link, RouteHandler } from 'react-router';
 
-import Main from './structure/main';
-import AddArticle from './component/add-article';
+import Dispatcher from './dispatcher';
 
-import ArticleCollection from './structure/article-collection';
+import ArticleStore from './store/article-store';
 
-require('./app.scss');
+import MainStructure from './structure/main';
+import ArticleCollectionStructure from './structure/article-collection';
+import AddArticleComponent from './component/add-article';
+import ArticleComponent from './component/article';
 
-const routes = (
-  <Route handler={Main}>
-    <Route path="/" handler={ArticleCollection}/>
-    <Route path="/add" handler={AddArticle}/>
-  </Route>
-);
+import Router from './router';
 
-Router.run(routes, Router.HistoryLocation, (Root) => {
-  React.render(<Root/>, document.getElementById('App'));
-});
+
+// create instances
+const dispatcher = Dispatcher();
+
+const articleStore = ArticleStore(dispatcher);
+
+const mainStructure = MainStructure();
+const articleComponent = ArticleComponent();
+const articleCollectionStructure = ArticleCollectionStructure(articleStore, articleComponent);
+const addArticleComponent = AddArticleComponent(dispatcher, articleStore);
+
+const router = Router(mainStructure, articleCollectionStructure, addArticleComponent);

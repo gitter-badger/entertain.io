@@ -1,38 +1,40 @@
-import Dispatcher from '../dispatcher';
 import EventEmitter from 'wolfy87-eventemitter';
 
-class ArticleStore extends EventEmitter {
+export default function create(Dispatcher) {
 
-  articles = [{
-    title : 'Test Article',
-    teaser : 'This is a test Article',
-    url : 'http://test.com'
-  }];
+  class ArticleStore extends EventEmitter {
 
-  addArticle(article) {
-    this.articles.push(article);
-    this.emit('change');
+    articles = [{
+      title: 'Test Article',
+      teaser: 'This is a test Article',
+      url: 'http://test.com'
+    }];
+
+    addArticle(article) {
+      this.articles.push(article);
+      this.emit('change');
+    }
+
+    constructor() {
+      super();
+
+      Dispatcher.register((payload) => {
+
+        console.log("dispatcher called", payload);
+
+        switch (payload.eventName) {
+
+          case 'new-article':
+            this.addArticle(payload.article);
+            break;
+
+        }
+
+        return true;
+      });
+    }
+
   }
 
-  constructor() {
-    super();
-
-    Dispatcher.register((payload) => {
-
-      console.log("dispatcher called", payload);
-
-      switch( payload.eventName ) {
-
-        case 'new-article':
-          this.addArticle(payload.article);
-          break;
-
-      }
-
-      return true;
-    });
-  }
-
+  return new ArticleStore();
 }
-
-export default new ArticleStore();
