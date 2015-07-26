@@ -7,9 +7,9 @@
     "start": "NODE_ENV=production babel-node src/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node --stage 0",
-    "develop": "nodemon --exec npm run babel-node -- src/server",
+    "develop": "npm install && nodemon --exec npm run babel-node -- src/server",
     "production-build": "rimraf dist && webpack --config config/production.webpack.js",
-    "prestart": "npm run production-build"
+    "postinstall": "npm run production-build"
   },
   "repository": {
     "type": "git",
