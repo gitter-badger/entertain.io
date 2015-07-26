@@ -3,24 +3,31 @@ import WebpackDevServer from 'webpack-dev-server';
 import path from 'path';
 import config from '../../../config/development.webpack';
 
-const PORT = process.env.PORT || 3000;
 
-export default class {
+export default function create(Server) {
 
-  constructor() {
-    new WebpackDevServer(webpack(config), {
-      publicPath: config.output.publicPath,
-      hot: true,
-      historyApiFallback: true,
-      contentBase: path.resolve('dist'),
-      proxy: {
-        '*': 'http://localhost:8000'
-      }
-    }).listen(PORT, 'localhost', (err) => {
-        if (err) {
-          console.log(err);
+  class DevServer {
+
+    PORT = 3000;
+
+    constructor() {
+      new WebpackDevServer(webpack(config), {
+        publicPath: config.output.publicPath,
+        hot: true,
+        historyApiFallback: true,
+        contentBase: path.resolve('dist'),
+        stats: { colors: true },
+        proxy: {
+          '*': `http://localhost:${Server.PORT}`
         }
-        console.log(`Listening at localhost:${PORT}`);
-      });
+      }).listen(this.PORT, 'localhost', (err) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(`Listening at localhost:${this.PORT}`);
+        });
+    }
   }
+
+  return new DevServer();
 }

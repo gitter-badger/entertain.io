@@ -24,6 +24,6 @@ const mainStructure = MainStructure();
 const articleStructure = ArticleStructure();
 
 const articleCollectionComponent = ArticleCollectionComponent(articleStore, articleStructure);
-const addArticleComponent = AddArticleComponent(articleAction, articleStore);
+const addArticleComponent = AddArticleComponent(articleAction);
 
 const router = Router(mainStructure, articleCollectionComponent, addArticleComponent);

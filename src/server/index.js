@@ -1,8 +1,8 @@
 import DevServer from './services/dev-server';
-import ProdServer from './services/prod-server';
+import Server from './services/server';
+
+const server = Server();
 
 if (process.env.NODE_ENV !== 'production') {
-  new DevServer();
-} else {
-  new ProdServer();
+  new DevServer(server);
 }

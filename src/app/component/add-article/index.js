@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 require('./style.scss');
 
-export default function create(ArticleAction, ArticleStore) {
+export default function create(ArticleAction) {
 
   class AddArticle extends Component {
 
