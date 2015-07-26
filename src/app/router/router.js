@@ -1,8 +1,6 @@
 import React from 'react';
 import Router, {Route} from 'react-router';
 
-require('./app.scss');
-
 export default function create(Main, ArticleCollection, AddArticle) {
 
   const routes = (
@@ -17,4 +15,3 @@ export default function create(Main, ArticleCollection, AddArticle) {
   });
 
 }
-
