@@ -10,7 +10,11 @@ export default class {
   constructor() {
     app.use('/assets', express.static(`${process.env.PWD}/dist/assets`));
 
-    app.all('*', (req, res) => {
+    app.get('/api', (req, res) => {
+      res.send('ai');
+    });
+
+    app.get('/', (req, res) => {
       res.sendFile(`${process.env.PWD}/dist/index.html`);
     });
 
