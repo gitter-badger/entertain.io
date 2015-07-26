@@ -5,4 +5,36 @@
   min-width: 600px;
   width: 600px;
   margin: 25px 0;
+  padding: 20px;
+
+  h2 {
+    color: #002d49;
+    font-size: 24px;
+    font-family: 'Droid Sans';
+    font-weight: bold;
+    line-height: 22px;
+    text-decoration: none;
+    line-height: 32px;
+    &:hover {
+      color: #00b9ee;
+    }
+  }
+
+  p {
+    color: #002d49;
+    font-family: 'Droid Sans';
+    margin-top: 10px;
+    line-height: 22px;
+    font-size: 14px;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: 'Droid Sans';
+    text-transform: uppercase;
+    color: #494949;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+  }
 }

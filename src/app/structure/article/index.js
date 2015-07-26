@@ -10,7 +10,7 @@ export default function create() {
         <article className="structure--article">
           <h2>{this.props.title}</h2>
           <p>{this.props.teaser}</p>
-          <a href={this.props.url}>{this.props.url}</a>
+          <a href={this.props.url}>More</a>
         </article>
       );
     }
