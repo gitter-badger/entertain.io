@@ -4,10 +4,12 @@
   "description": "Your daily dose of entertainment.",
   "main": "index.js",
   "scripts": {
+    "start": "NODE_ENV=production babel-node src/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node --stage 0",
     "develop": "nodemon --exec npm run babel-node -- src/server",
-    "production-build": "rimraf dist && webpack --config config/production.webpack.js"
+    "production-build": "rimraf dist && webpack --config config/production.webpack.js",
+    "prestart": "npm run production-build"
   },
   "repository": {
     "type": "git",
