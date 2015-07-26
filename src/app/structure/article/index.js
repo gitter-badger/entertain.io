@@ -7,7 +7,7 @@ export default function create() {
   class Article extends Component {
     render() {
       return (
-        <article className="component--article">
+        <article className="structure--article">
           <h2>{this.props.title}</h2>
           <p>{this.props.teaser}</p>
           <a href={this.props.url}>{this.props.url}</a>
@@ -18,5 +18,3 @@ export default function create() {
 
   return Article;
 }
-
-
