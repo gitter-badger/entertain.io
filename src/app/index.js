@@ -14,7 +14,7 @@ import AddArticleComponent from './component/add-article';
 import Router from './router/router';
 
 
-// create instances
+// Create instances
 const dispatcher = Dispatcher();
 
 const articleStore = ArticleStore(dispatcher);
