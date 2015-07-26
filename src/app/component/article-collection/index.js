@@ -26,7 +26,7 @@ export default function create(ArticleStore, Article) {
     render() {
 
       return (
-        <section className="structure--article-container">
+        <section className="component--article-collection">
           {this.state.articles.map((article) =>
               <Article {...article}/>
           )}
