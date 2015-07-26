@@ -12,7 +12,10 @@ export default class {
       publicPath: config.output.publicPath,
       hot: true,
       historyApiFallback: true,
-      contentBase: path.resolve('dist')
+      contentBase: path.resolve('dist'),
+      proxy: {
+        '*': 'http://localhost:8000'
+      }
     }).listen(PORT, 'localhost', (err) => {
         if (err) {
           console.log(err);
