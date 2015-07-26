@@ -14,8 +14,10 @@ export default function create() {
               <span className="entertain-part">ENTERTAIN</span>
               <span className="io-part">IO</span>
             </Link>
-            <Link to="/">Article-Collection</Link>
-            <Link to="/add">Add Article</Link>
+            <nav className="navigation">
+              <Link to="/">Article-Collection</Link>
+              <Link to="/add">Add Article</Link>
+            </nav>
           </div>
           <div className="body">
             <RouteHandler/>

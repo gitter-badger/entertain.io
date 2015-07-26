@@ -55,4 +55,28 @@
       color: #00b9ee;
     }
   }
+
+  .navigation {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin-left: 20px;
+    a {
+      align-items: center;
+      border-bottom: 3px solid transparent;
+      color: #002d49;
+      cursor: pointer;
+      display: flex;
+      font-family: 'Open Sans';
+      font-size: 0.875em;
+      margin: 0 5px;
+      padding: 0 10px;
+      transition: .2s;
+      text-decoration: none;
+      &.active, &:hover {
+        border-bottom: 3px solid #00b9ee;
+      }
+    }
+  }
 }
