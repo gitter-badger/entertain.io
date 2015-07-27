@@ -2,16 +2,43 @@ import React, { Component } from 'react';
 
 require('./style.scss');
 
-export default function create(ArticleAction) {
+export default function create(ArticleStore, ArticleAction) {
 
   class AddArticle extends Component {
+
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        title : '',
+        desc : '',
+        url : '',
+        image : ''
+      };
+    }
+
+    metadataUpdated(data) {
+      this.setState({
+        title : data.title,
+        desc : data.desc,
+        image : data.image
+      });
+    }
+
+    componentDidMount() {
+      ArticleStore.on('metadata-update', this.metadataUpdated.bind(this));
+    }
+
+    componentWillUnmount() {
+      ArticleStore.removeListener('metadata-update', this.metadataUpdated.bind(this));
+    }
 
     changeTitle(event) {
       this.setState({title : event.target.value});
     }
 
-    changeTeaser(event) {
-      this.setState({teaser : event.target.value});
+    changeDesc(event) {
+      this.setState({desc : event.target.value});
     }
 
     changeUrl(event) {
@@ -22,6 +49,10 @@ export default function create(ArticleAction) {
       event.preventDefault();
 
       ArticleAction.addArticle(this.state);
+    }
+
+    fetchMetadata(event) {
+      ArticleAction.fetchMetadata(this.state.url);
     }
 
     render() {
@@ -36,14 +67,18 @@ export default function create(ArticleAction) {
             </div>
 
             <div className="input-field">
-              <label for="teaser">Teaser</label>
-              <input type="text" id="teaser" onChange={this.changeTeaser.bind(this)}/>
+              <label for="desc">Teaser</label>
+              <input type="text" id="desc" onChange={this.changeDesc.bind(this)}/>
             </div>
 
             <div className="input-field">
               <label for="url">URL</label>
               <input type="text" id="url" onChange={this.changeUrl.bind(this)} />
             </div>
+
+            <span>{this.state.image}</span>
+
+            <input type="button" value="fetch page data" onClick={this.fetchMetadata.bind(this)}/>
 
             <input type="submit" onClick={this.add.bind(this)}/>
           </form>

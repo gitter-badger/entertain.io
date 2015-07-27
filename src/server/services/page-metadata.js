@@ -4,6 +4,10 @@ import cheerio from 'cheerio';
 export default function create() {
 
   return function(uri, callback) {
+    callback(null, {image : 'image', title : 'title', desc : 'description'})
+  };
+
+  return function(uri, callback) {
     request({ uri }, function (error, response, body) {
 
       if (error) return callback(error);
@@ -25,7 +29,7 @@ export default function create() {
         result.title = nodes.title[0].attribs["content"]
       }
       if (nodes.description.length === 1) {
-        result.description = nodes.description[0].attribs["content"]
+        result.desc = nodes.description[0].attribs["content"]
       }
 
       callback(null, result);

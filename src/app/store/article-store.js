@@ -6,8 +6,9 @@ export default function create(Dispatcher) {
 
     articles = [{
       title: 'Test Article',
-      teaser: 'This is a test Article',
-      url: 'http://test.com'
+      desc: 'This is a test Article',
+      url: 'http://test.com',
+      image : ''
     }];
 
     dispatchToken = Dispatcher.register((payload) => {
@@ -18,6 +19,9 @@ export default function create(Dispatcher) {
           this.addArticle(payload.article);
           break;
 
+        case 'metadata-update':
+          this.emit('metadata-update', payload.data);
+          break;
       }
 
       return true;

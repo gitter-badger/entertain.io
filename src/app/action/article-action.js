@@ -1,5 +1,5 @@
 
-export default function create(Dispatcher) {
+export default function create(Dispatcher, ConnectionService) {
 
   class ArticleAction {
 
@@ -7,6 +7,20 @@ export default function create(Dispatcher) {
       Dispatcher.dispatch({
         eventName: 'add-article', article
       });
+    }
+
+    fetchMetadata(url) {
+      console.log("in action");
+
+      // call server
+      ConnectionService.getPageMetadata(url, (err, data) => {
+
+        // servers response
+        Dispatcher.dispatch({
+          eventName: 'metadata-update', data
+        });
+      });
+
     }
 
   }

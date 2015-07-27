@@ -4,7 +4,7 @@
   "description": "Your daily dose of entertainment.",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production babel-node src/server",
+    "start": "NODE_ENV=production babel-node --stage 0 src/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node --stage 0",
     "develop": "nodemon --exec npm run babel-node -- src/server",
@@ -43,6 +43,8 @@
     "request": "^2.60.0",
     "rimraf": "^2.4.2",
     "sass-loader": "^1.0.3",
+    "socket.io": "^1.3.6",
+    "socket.io-client": "^1.3.6",
     "style-loader": "^0.12.3",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.10.1"

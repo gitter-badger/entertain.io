@@ -16,11 +16,11 @@ export default function create(ArticleStore, Article) {
     }
 
     componentDidMount() {
-      ArticleStore.on('change', this.articleListChanged);
+      ArticleStore.on('change', this.articleListChanged.bind(this));
     }
 
     componentWillUnmount() {
-      ArticleStore.removeListener('change', this.articleListChanged);
+      ArticleStore.removeListener('change', this.articleListChanged.bind(this));
     }
 
     render() {
