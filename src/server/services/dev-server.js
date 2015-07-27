@@ -18,7 +18,7 @@ export default function create(Server) {
         contentBase: path.resolve('dist'),
         stats: { colors: true },
         proxy: {
-          '*': `http://localhost:${Server.PORT}`
+          '/ws': `http://localhost:${Server.PORT}`
         }
       }).listen(this.PORT, 'localhost', (err) => {
           if (err) {
