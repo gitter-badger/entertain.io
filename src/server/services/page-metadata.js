@@ -4,10 +4,6 @@ import cheerio from 'cheerio';
 export default function create() {
 
   return function(uri, callback) {
-    callback(null, {image : 'image', title : 'title', desc : 'description'})
-  };
-
-  return function(uri, callback) {
     request({ uri }, function (error, response, body) {
 
       if (error) return callback(error);
