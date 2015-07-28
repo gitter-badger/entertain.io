@@ -9,7 +9,7 @@ export default function create() {
       return (
         <article className="structure--article">
           <h2>{this.props.title}</h2>
-          <p>{this.props.teaser}</p>
+          <p>{this.props.desc}</p>
           <a href={this.props.url}>More</a>
         </article>
       );
