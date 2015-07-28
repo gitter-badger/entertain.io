@@ -24,11 +24,10 @@ export default function create(ArticleStore, Article) {
     }
 
     render() {
-
       return (
         <section className="component--article-collection">
           {this.state.articles.map((article) =>
-              <Article {...article}/>
+              <Article key={article._id} {...article}/>
           )}
         </section>
       );

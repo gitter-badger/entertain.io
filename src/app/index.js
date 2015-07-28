@@ -31,3 +31,6 @@ const articleCollectionComponent = ArticleCollectionComponent(articleStore, arti
 const addArticleComponent = AddArticleComponent(articleStore, articleAction);
 
 const router = Router(mainStructure, articleCollectionComponent, addArticleComponent);
+
+// init stores
+articleAction.latestArticles();

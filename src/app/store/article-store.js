@@ -4,16 +4,15 @@ export default function create(Dispatcher) {
 
   class ArticleStore extends EventEmitter {
 
-    articles = [{
-      title: 'Test Article',
-      desc: 'This is a test Article',
-      url: 'http://test.com',
-      image : ''
-    }];
+    articles = [];
 
     dispatchToken = Dispatcher.register((payload) => {
 
       switch (payload.eventName) {
+        case 'latest-articles':
+          this.articles = payload.articles;
+          this.emit('change');
+          break;
 
         case 'add-article':
           this.addArticle(payload.article);

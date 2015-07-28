@@ -3,14 +3,23 @@ export default function create(Dispatcher, ConnectionService) {
 
   class ArticleAction {
 
+    latestArticles() {
+      ConnectionService.latestArticles((err, articles) => {
+        Dispatcher.dispatch({
+          eventName: 'latest-articles', articles
+        });
+      })
+    }
+
     addArticle(article) {
-      Dispatcher.dispatch({
-        eventName: 'add-article', article
+      ConnectionService.addArticle(article, (err, article) => {
+        Dispatcher.dispatch({
+          eventName: 'add-article', article
+        });
       });
     }
 
     fetchMetadata(url) {
-      console.log("in action");
 
       // call server
       ConnectionService.getPageMetadata(url, (err, data) => {
