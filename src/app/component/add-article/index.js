@@ -62,17 +62,17 @@ export default function create(ArticleStore, ArticleAction) {
           <form>
 
             <div className="input-field">
-              <label for="title">Title</label>
+              <label htmlFor="title">Title</label>
               <input type="text" id="title" value={this.state.title} onChange={this.changeTitle.bind(this)}/>
             </div>
 
             <div className="input-field">
-              <label for="desc">Description</label>
+              <label htmlFor="desc">Description</label>
               <input type="text" id="desc" value={this.state.desc} onChange={this.changeDesc.bind(this)}/>
             </div>
 
             <div className="input-field">
-              <label for="url">URL</label>
+              <label htmlFor="url">URL</label>
               <input type="text" id="url" value={this.state.url} onChange={this.changeUrl.bind(this)} />
             </div>
 
