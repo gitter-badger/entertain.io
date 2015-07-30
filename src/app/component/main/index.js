@@ -16,8 +16,8 @@ export default function create() {
             </Link>
             <nav className="navigation">
               <Link to="/">Article-Collection</Link>
-              <Link to="/add">Add Article</Link>
             </nav>
+            <button>+</button>
           </div>
           <div className="body">
             <RouteHandler/>
