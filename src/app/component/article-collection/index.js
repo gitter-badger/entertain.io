@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 require('./style.scss');
 
-export default function create(ArticleStore, Article) {
+export default function create(ArticleStore, Article, AddArticle) {
 
   class ArticleCollection extends Component {
 
@@ -25,11 +25,14 @@ export default function create(ArticleStore, Article) {
 
     render() {
       return (
-        <section className="component--article-collection">
-          {this.state.articles.map((article) =>
-              <Article key={article._id} {...article}/>
-          )}
-        </section>
+        <div>
+          <AddArticle/>
+          <section className="component--article-collection">
+            {this.state.articles.map((article) =>
+                <Article key={article._id} {...article}/>
+            )}
+          </section>
+        </div>
       );
     }
   }
