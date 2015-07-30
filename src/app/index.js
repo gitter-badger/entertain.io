@@ -28,9 +28,9 @@ const mainComponent = MainComponent();
 const articleComponent = ArticleComponent();
 
 const addArticleComponent = AddArticleComponent(articleStore, articleAction);
-const articleCollectionComponent = ArticleCollectionComponent(articleStore, articleComponent, addArticleComponent);
+const articleCollectionComponent = ArticleCollectionComponent(articleStore, articleComponent);
 
-const router = Router(mainComponent, articleCollectionComponent);
+const router = Router(mainComponent, articleCollectionComponent, addArticleComponent);
 
 // init stores
 articleAction.latestArticles();

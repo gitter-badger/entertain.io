@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, RouteHandler } from 'react-router';
 
 require('./style.scss');
 
@@ -59,6 +60,7 @@ export default function create(ArticleStore, ArticleAction) {
       return (
         <article className="component--add-article">
           <h1>Add Article</h1>
+          <Link to="/">CLOSE</Link>
           <form>
 
             <div className="input-field">
