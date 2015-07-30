@@ -33,7 +33,6 @@ export default function create() {
   }
 }
 
-
 // started with `$ node <FILENAME>`
 if (require.main === module) {
   create()('http://www.engadget.com/2015/07/26/welcome-back-to-the-after-math/', (err, res) => {
