@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, addons } from 'react/addons';
 import { Link, RouteHandler } from 'react-router';
 
-import addons from "react/addons";
-let ReactCSSTransitionGroup = addons.addons.CSSTransitionGroup;
-
-
+const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
 require('./style.scss');
 
 export default function create() {
 
   class Main extends Component {
-    contextTypes = {
+    static contextTypes = {
       router: React.PropTypes.func.isRequired
-    }
+    };
 
     render() {
-      console.log(this);
-      const name = this.context.router.getCurrentPath();
+      let name = this.context.router.getCurrentPath();
+
       return (
         <div className="structure--main">
           <div className="header">
@@ -40,11 +37,6 @@ export default function create() {
       );
     }
   }
-  // <RouteHandler/>
-  Main.contextTypes = {
-    router: React.PropTypes.func.isRequired
-  };
-
 
   return Main;
 }
