@@ -28,7 +28,7 @@ export default function create() {
             </nav>
           </div>
           <div className="body">
-            <ReactCSSTransitionGroup component="div" transitionName="example">
+            <ReactCSSTransitionGroup component="div" transitionName="route-change">
               <RouteHandler key={name}/>
             </ReactCSSTransitionGroup>
           </div>

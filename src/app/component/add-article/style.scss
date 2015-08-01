@@ -11,21 +11,21 @@
     margin : 5px;
   }
 
-  &.example-enter {
+  &.route-change-enter {
     top: -50px;
     transition: .5s;
   }
 
-  &.example-enter.example-enter-active {
+  &.route-change-enter.route-change-enter-active {
     top: 0px;
   }
 
-  &.example-leave {
+  &.route-change-leave {
     top: 0px;
     transition: .5s;
   }
 
-  &.example-leave.example-leave-active {
+  &.route-change-leave.route-change-leave-active {
     top: -50px;
   }
 
