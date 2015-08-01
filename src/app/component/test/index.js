@@ -13,42 +13,39 @@ export default function create() {
       this.state = {
         users : {
           root : {
-            articles : [0],
-            name : 'root'
+            articles : [0]
           },
           jonathan : {
-            articles : [1],
-            name : 'jonathan'
+            articles : [1]
           },
           matthias : {
-            articles : [2],
-            name : 'matthias'
+            articles : [2]
           },
-          //tim : {
-          //  articles : [4]
-          //},
-          //hunt : {
-          //  articles : [6]
-          //}
+          tim : {
+            articles : [4]
+          },
+          hunt : {
+            articles : [6]
+          }
         },
         articles : [{
           upvotes : ['root', 'jonathan', 'matthias'],
           id : 'A'
         },{
-          upvotes : ['jonathan', 'root', 'matthias'],
+          upvotes : ['jonathan', 'root', 'matthias', 'tim', 'hunt'],
           id : 'B'
         }, {
           upvotes : ['matthias'],
           id : 'C'
-        }/*, {
-          upvotes : ['jonathan','matthias']
         }, {
-          upvotes : ['tim','jonathan']
+          upvotes : []
         }, {
-          upvotes : ['jonathan']
+          upvotes : []
         }, {
           upvotes : ['hunt']
-        }*/]
+        }, {
+          upvotes : []
+        }]
       };
 
       this.state.cntUser = Object.keys(this.state.users).length;
@@ -63,26 +60,18 @@ export default function create() {
       return this.state.articles[articleId];
     }
 
-    userKarma(user, t) {
-      let ret = user.articles.reduce((last, articleId) =>
-          last + (articleId < t ? this.articleKarma(this.getArticle(articleId), articleId) : 0),
+    userKarma(user) {
+      return user.articles.reduce((last, articleId) =>
+          last + this.articleKarma(this.getArticle(articleId)),
         1);
-      console.log(`userKarma(${user.name}, ${t}) = ${ret}`);
-      return ret;
     }
 
-    articleKarma(article, t) {
-      let ret =  article.upvotes.reduce((last, cur) => last + this.userKarma(this.getUser(cur), t), 0) / (1 + this.state.cntUser - article.upvotes.length );
-      console.log(`articleKarma(${article.id}, ${t}) = ${ret}`);
-      return ret;
+    articleKarma(article) {
+      return article.upvotes.length;
     }
 
     rangArticle(article, tn, t0) {
-      return this.articleKarma(article, tn) / (1 + tn - t0);
-    }
-
-    getArticleKarma(article) {
-      return this.articleKarma(article, this.state.articles.length);
+      return this.articleKarma(article) / (tn - t0);
     }
 
     getArticleRang(article, articleId) {
@@ -95,7 +84,7 @@ export default function create() {
       });
 
       let articles = this.state.articles.map((article, articleId) => {
-         return (<li>Article : {articleId} Karma: {this.getArticleKarma(article)} Rang : {this.getArticleRang(article, articleId)}</li>);
+         return (<li>Article : {articleId} Karma: {this.articleKarma(article)} Rang : {this.getArticleRang(article, articleId)}</li>);
       });
 
       let sortedArticles = this.state.articles.map((article, articleId) => {

@@ -25,6 +25,7 @@ export default function create() {
             <nav className="navigation">
               <Link to="/">Article-Collection</Link>
               <Link to="/add-article">+</Link>
+              <Link to="/test">test</Link>
             </nav>
           </div>
           <div className="body">

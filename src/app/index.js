@@ -8,9 +8,9 @@ import ConnectionService from './service/connection';
 
 import MainComponent from './component/main';
 import ArticleComponent from './component/article';
-
 import ArticleCollectionComponent from './component/article-collection';
 import AddArticleComponent from './component/add-article';
+import Test from './component/test';
 
 
 import Router from './router/router';
@@ -30,7 +30,9 @@ const articleComponent = ArticleComponent();
 const addArticleComponent = AddArticleComponent(articleStore, articleAction);
 const articleCollectionComponent = ArticleCollectionComponent(articleStore, articleComponent);
 
-const router = Router(mainComponent, articleCollectionComponent, addArticleComponent);
+const test = Test();
+
+const router = Router(mainComponent, articleCollectionComponent, addArticleComponent, test);
 
 // init stores
 articleAction.latestArticles();
