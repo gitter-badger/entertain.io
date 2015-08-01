@@ -16,6 +16,10 @@ export default function create() {
     getPageMetadata(uri, callback) {
       this.socket.emit('page-metadata', uri, callback);
     }
+
+    constructor() {
+      window.socket = this.socket;
+    }
   }
 
   return new CommunicationClient();
