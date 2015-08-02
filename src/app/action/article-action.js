@@ -13,6 +13,10 @@ export default function create(Dispatcher, ConnectionService) {
 
     addArticle(article) {
       ConnectionService.addArticle(article, (err, article) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
         Dispatcher.dispatch({
           eventName: 'add-article', article
         });

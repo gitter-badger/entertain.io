@@ -23,9 +23,23 @@ export default function create(Server, PageMetadata, Storage) {
           socket.request.session.save();
         });
 
+        socket.on('logout', () => {
+          delete socket.request.session.user;
+          socket.request.session.auth = false;
+          socket.request.session.save();
+        });
+
         socket.on('page-metadata', PageMetadata);
         socket.on('latest-articles', Storage.latestArticles.bind(Storage));
-        socket.on('add-article', Storage.addArticle.bind(Storage));
+
+        socket.on('add-article', (article, callback) => {
+          let user = socket.request.session.user;
+          if (socket.request.session.auth) {
+            Storage.addArticle(user, article, callback);
+          } else {
+            callback('Not Auth!');
+          }
+        });
 
       });
     }
