@@ -17,7 +17,20 @@ export default function create() {
       this.socket.emit('page-metadata', uri, callback);
     }
 
+    currentUser(callback) {
+      this.socket.emit('current-user', callback);
+    }
+
+    login(username, password, callback) {
+      this.socket.emit('login', username, password, callback);
+    }
+
+    logout(callback) {
+      this.socket.emit('logout', callback);
+    }
+
     constructor() {
+      // for debugging
       window.socket = this.socket;
     }
   }

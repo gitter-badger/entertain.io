@@ -8,13 +8,13 @@ import Action from './action';
 
 const pageMetadata = PageMetadata();
 const storage = Storage();
-const action = Action(pageMetadata, storage);
+const auth = Auth();
+const action = Action(pageMetadata, storage, auth);
 
 storage.mongo.db().then((db) => {
 
   const server = Server(db);
   const communication = Communication(server, action);
-  //const auth = Auth(server, communication);
 
   if (process.env.NODE_ENV !== 'production') {
     new DevServer(server);

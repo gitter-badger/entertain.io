@@ -1,4 +1,4 @@
-export default function create(PageMetadata, Storage) {
+export default function create(PageMetadata, Storage, Auth) {
 
   class Action {
 
@@ -14,16 +14,27 @@ export default function create(PageMetadata, Storage) {
       Storage.addArticle(session.user, article, callback);
     }
 
-    login(user, session) {
-      session.user = user;
-      session.auth = true;
-      session.save();
+    login(username, password, session, callback) {
+      session.auth = Auth.areCredentialsCorrect(username, password);
+      if (session.auth) {
+        session.user = Auth.getUser(username);
+        session.save();
+        callback(null, session.user);
+      } else {
+        callback(new Error('Wrong credentials'));
+      }
     }
 
-    logout(session) {
+    logout(session, callback) {
       delete session.user;
-      socket.session.auth = false;
+      session.auth = false;
       session.save();
+      callback(null);
+    }
+
+    currentUser(session, callback) {
+      if (session.auth) callback(null, session.user);
+      else callback(new Error('Not Authenticated'));
     }
   }
 

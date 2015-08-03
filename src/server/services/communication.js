@@ -17,12 +17,16 @@ export default function create(Server, Action) {
         
         console.log("socket.handshake.session", socket.request.session);
 
-        socket.on('login', (user) => {
-          Action.login(user, socket.request.session);
+        socket.on('login', (username, password, callback) => {
+          Action.login(username, password, socket.request.session, callback);
         });
 
-        socket.on('logout', () => {
-          Action.logout(socket.request.session);
+        socket.on('logout', (callback) => {
+          Action.logout(socket.request.session, callback);
+        });
+
+        socket.on('current-user', (callback) => {
+          Action.currentUser(socket.request.session, callback);
         });
 
         socket.on('page-metadata', Action.getPageMetadata.bind(Action));

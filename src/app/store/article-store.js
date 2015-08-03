@@ -31,6 +31,13 @@ export default function create(Dispatcher) {
       this.emit('change');
     }
 
+    constructor() {
+      super();
+
+      window.articleStore = this; // debugging
+    }
+
+
   }
 
   return new ArticleStore();

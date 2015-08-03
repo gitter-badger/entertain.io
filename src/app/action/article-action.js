@@ -36,6 +36,11 @@ export default function create(Dispatcher, ConnectionService) {
 
     }
 
+    // bootstrap
+    constructor() {
+      this.latestArticles();
+    }
+
   }
 
   return new ArticleAction();

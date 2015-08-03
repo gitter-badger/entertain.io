@@ -29,7 +29,7 @@ export default function create(Db) {
       this.app.set('json spaces', 2);  // pretty print json
       this.app.use(this.session);
 
-      this.app.use('/assets', express.static(path.join(process.env.PWD, '/dist/assets')));
+      this.app.use('/assets', express.static(path.join(__dirname, '/dist/assets')));
 
       this.app.get('/api', (req, res) => {
         res.send('ai');

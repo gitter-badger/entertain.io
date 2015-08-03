@@ -5,7 +5,7 @@ const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
 require('./style.scss');
 
-export default function create() {
+export default function create(UserManagement) {
 
   class Main extends Component {
     static contextTypes = {
@@ -27,6 +27,7 @@ export default function create() {
               <Link to="/add-article">+</Link>
               <Link to="/test">test</Link>
             </nav>
+            <UserManagement/>
           </div>
           <div className="body">
             <ReactCSSTransitionGroup component="div" transitionName="route-change">
