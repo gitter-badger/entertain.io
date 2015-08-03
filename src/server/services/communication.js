@@ -1,7 +1,7 @@
 import socketIO from 'socket.io';
 import cookieParser from 'cookie-parser';
 
-export default function create(Server, PageMetadata, Storage) {
+export default function create(Server, Action) {
 
   class CommunicationServer {
 
@@ -18,27 +18,18 @@ export default function create(Server, PageMetadata, Storage) {
         console.log("socket.handshake.session", socket.request.session);
 
         socket.on('login', (user) => {
-          socket.request.session.user = user;
-          socket.request.session.auth = true;
-          socket.request.session.save();
+          Action.login(user, socket.request.session);
         });
 
         socket.on('logout', () => {
-          delete socket.request.session.user;
-          socket.request.session.auth = false;
-          socket.request.session.save();
+          Action.logout(socket.request.session);
         });
 
-        socket.on('page-metadata', PageMetadata);
-        socket.on('latest-articles', Storage.latestArticles.bind(Storage));
+        socket.on('page-metadata', Action.getPageMetadata.bind(Action));
+        socket.on('latest-articles', Action.getLatestArticles.bind(Action));
 
         socket.on('add-article', (article, callback) => {
-          let user = socket.request.session.user;
-          if (socket.request.session.auth) {
-            Storage.addArticle(user, article, callback);
-          } else {
-            callback('Not Auth!');
-          }
+          Action.addArticle(article, socket.request.session, callback);
         });
 
       });
