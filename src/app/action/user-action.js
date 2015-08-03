@@ -8,6 +8,7 @@ export default function create(Dispatcher, ConnectionService) {
 
     login(username, password) {
       ConnectionService.login(username, password, (err, user) => {
+        debug("ConnectionService.login", err, user);
         if (!err) {
           Dispatcher.dispatch({
             eventName: 'user', user
@@ -31,10 +32,11 @@ export default function create(Dispatcher, ConnectionService) {
     // get current user from session
     currentUser() {
       ConnectionService.currentUser((err, user) => {
-        debug('current user is', user);
-        Dispatcher.dispatch({
-          eventName: 'user', user
-        });
+        if (!err) {
+          Dispatcher.dispatch({
+            eventName: 'user', user
+          });
+        }
       });
     }
 

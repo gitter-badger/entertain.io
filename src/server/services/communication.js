@@ -15,8 +15,6 @@ export default function create(Server, Action) {
 
       this.io.on('connection', (socket) => {
         
-        console.log("socket.handshake.session", socket.request.session);
-
         socket.on('login', (username, password, callback) => {
           Action.login(username, password, socket.request.session, callback);
         });

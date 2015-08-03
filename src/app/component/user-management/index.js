@@ -39,10 +39,11 @@ export default function create(UserStore, UserAction) {
       let login = (
         <span>
           <form onSubmit={this.login.bind(this)}>
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input type='text' placeholder='username' id='username' ref='username'></input>
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input type='password' placeholder='password' id='password' ref='password'></input>
+
             <input type='submit' value='login'></input>
             <span className="error">{this.state.user.errorMsg}</span>
           </form>

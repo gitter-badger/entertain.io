@@ -21,7 +21,7 @@ export default function create(PageMetadata, Storage, Auth) {
         session.save();
         callback(null, session.user);
       } else {
-        callback(new Error('Wrong credentials'));
+        callback('Wrong credentials');
       }
     }
 
@@ -34,7 +34,7 @@ export default function create(PageMetadata, Storage, Auth) {
 
     currentUser(session, callback) {
       if (session.auth) callback(null, session.user);
-      else callback(new Error('Not Authenticated'));
+      else callback('Not Authenticated');
     }
   }
 
