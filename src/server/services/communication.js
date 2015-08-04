@@ -28,6 +28,7 @@ export default function create(Server, Action) {
         });
 
         socket.on('page-metadata', Action.getPageMetadata.bind(Action));
+        socket.on('tag-suggest', Action.getTagSuggestion.bind(Action));
         socket.on('latest-articles', Action.getLatestArticles.bind(Action));
 
         socket.on('add-article', (article, callback) => {

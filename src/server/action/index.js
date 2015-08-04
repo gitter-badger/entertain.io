@@ -1,9 +1,13 @@
-export default function create(PageMetadata, Storage, Auth) {
+export default function create(PageMetadata, Storage, Auth, TagSuggest) {
 
   class Action {
 
     getPageMetadata(uri, callback) {
       PageMetadata(uri, callback)
+    }
+
+    getTagSuggestion(uri, callback) {
+      TagSuggest(uri, callback);
     }
 
     getLatestArticles(callback) {
