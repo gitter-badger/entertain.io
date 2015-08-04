@@ -21,6 +21,10 @@ export default function create(Dispatcher) {
         case 'metadata-update':
           this.emit('metadata-update', payload.data);
           break;
+
+        case 'tag-suggestions':
+          this.emit('tag-suggestions', payload.data);
+          break;
       }
 
       return true;

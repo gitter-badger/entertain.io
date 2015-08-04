@@ -17,6 +17,10 @@ export default function create() {
       this.socket.emit('page-metadata', uri, callback);
     }
 
+    getTagSuggest(uri, callback) {
+      this.socket.emit('tag-suggest', uri, callback);
+    }
+
     currentUser(callback) {
       this.socket.emit('current-user', callback);
     }

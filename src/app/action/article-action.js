@@ -27,12 +27,18 @@ export default function create(Dispatcher, ConnectionService) {
 
       // call server
       ConnectionService.getPageMetadata(url, (err, data) => {
-
         // servers response
         Dispatcher.dispatch({
           eventName: 'metadata-update', data
         });
       });
+
+      ConnectionService.getTagSuggest(url, (err, data) => {
+        if (!err)
+          Dispatcher.dispatch({
+            eventName: 'tag-suggestions', data
+          });
+      })
 
     }
 

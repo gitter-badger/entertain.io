@@ -16,7 +16,11 @@ export default function create(ArticleStore, ArticleAction, Article) {
         title : '',
         desc : '',
         url : dummyArticleUrl,
-        image : ''
+        image : '',
+        tags : {
+          popular: [],
+          recommended: []
+        }
       };
     }
 
@@ -28,12 +32,19 @@ export default function create(ArticleStore, ArticleAction, Article) {
       });
     }
 
+    tagSuggestionUpdate(data) {
+      console.log("tagSuggestionUpdate", data);
+      this.setState({tags : data});
+    }
+
     componentDidMount() {
       ArticleStore.on('metadata-update', this.metadataUpdated.bind(this));
+      ArticleStore.on('tag-suggestions', this.tagSuggestionUpdate.bind(this));
     }
 
     componentWillUnmount() {
       ArticleStore.removeListener('metadata-update', this.metadataUpdated.bind(this));
+      ArticleStore.removeListener('tag-suggestions', this.tagSuggestionUpdate.bind(this));
     }
 
     changeTitle(event) {
@@ -72,6 +83,11 @@ export default function create(ArticleStore, ArticleAction, Article) {
             <input type='text' id='desc' value={this.state.desc} onChange={this.changeDesc.bind(this)}/>
           </div>
 
+          <ul>
+            {this.state.tags.popular.map((tag, id) => (<li key={id} className="popular">{tag}</li>))}
+            {this.state.tags.recommended.map((tag, id) => (<li key={id} className="recommended">{tag}</li>))}
+          </ul>
+
           <button onClick={this.add.bind(this)}>Add Article</button>
 
           <Article key='article' {...this.state}/>
@@ -89,7 +105,7 @@ export default function create(ArticleStore, ArticleAction, Article) {
           </ReactCSSTransitionGroup>
 
 
-          <ReactCSSTransitionGroup transitionName="exaaemple">
+          <ReactCSSTransitionGroup transitionName="example">
             { this.state.title ? articlePreview : '' }
           </ReactCSSTransitionGroup>
 
