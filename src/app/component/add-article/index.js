@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component, addons } from 'react/addons';
+const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
 require('./style.scss');
 
-export default function create(ArticleStore, ArticleAction) {
+let dummyArticleUrl = 'http://techcrunch.com/2015/07/26/jack-dorseys-first-order-of-business-as-interim-ceo-twitter-support-to-the-stars/';
+
+export default function create(ArticleStore, ArticleAction, Article) {
 
   class AddArticle extends Component {
 
@@ -13,7 +15,7 @@ export default function create(ArticleStore, ArticleAction) {
       this.state = {
         title : '',
         desc : '',
-        url : '',
+        url : dummyArticleUrl,
         image : ''
       };
     }
@@ -48,46 +50,52 @@ export default function create(ArticleStore, ArticleAction) {
 
     add(event) {
       event.preventDefault();
-
       ArticleAction.addArticle(this.state);
     }
 
     fetchMetadata(event) {
+      event.preventDefault();
       ArticleAction.fetchMetadata(this.state.url);
     }
 
     render() {
+
+      const articlePreview = (
+        <div>
+          <div className='input-field'>
+            <label htmlFor='title'>Title</label>
+            <input type='text' id='title' value={this.state.title} onChange={this.changeTitle.bind(this)}/>
+          </div>
+
+          <div className='input-field'>
+            <label htmlFor='desc'>Description</label>
+            <input type='text' id='desc' value={this.state.desc} onChange={this.changeDesc.bind(this)}/>
+          </div>
+
+          <button onClick={this.add.bind(this)}>Add Article</button>
+
+          <Article key='article' {...this.state}/>
+        </div>
+      );
+
       return (
-        <article className="component--add-article">
-          <h1>Add Article</h1>
-          <Link to="/">CLOSE</Link>
-          <form>
+        <article className='component--add-article'>
 
-            <div className="input-field">
-              <label htmlFor="title">Title</label>
-              <input type="text" id="title" value={this.state.title} onChange={this.changeTitle.bind(this)}/>
-            </div>
+          <ReactCSSTransitionGroup component='div' transitionName="example" transitionAppear={true}>
+            <form key='add-article' onSubmit={this.fetchMetadata.bind(this)}>
+              <input className='article-url' type='text' value={this.state.url} onChange={this.changeUrl.bind(this)} />
+              <input className='add-article' type='submit'/>
+            </form>
+          </ReactCSSTransitionGroup>
 
-            <div className="input-field">
-              <label htmlFor="desc">Description</label>
-              <input type="text" id="desc" value={this.state.desc} onChange={this.changeDesc.bind(this)}/>
-            </div>
 
-            <div className="input-field">
-              <label htmlFor="url">URL</label>
-              <input type="text" id="url" value={this.state.url} onChange={this.changeUrl.bind(this)} />
-            </div>
+          <ReactCSSTransitionGroup transitionName="exaaemple">
+            { this.state.title ? articlePreview : '' }
+          </ReactCSSTransitionGroup>
 
-            <img src={this.state.image}/>
-
-            <input type="button" value="fetch page data" onClick={this.fetchMetadata.bind(this)}/>
-
-            <input type="submit" onClick={this.add.bind(this)}/>
-          </form>
         </article>
       );
     }
-
   }
 
   return AddArticle;

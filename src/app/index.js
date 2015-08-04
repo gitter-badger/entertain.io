@@ -31,13 +31,12 @@ const userAction = UserAction(dispatcher, connectionService);
 
 const articleComponent = ArticleComponent();
 
-const addArticleComponent = AddArticleComponent(articleStore, articleAction);
-const articleCollectionComponent = ArticleCollectionComponent(articleStore, articleComponent);
+const addArticleComponent = AddArticleComponent(articleStore, articleAction, articleComponent);
+const articleCollectionComponent = ArticleCollectionComponent(articleStore, articleComponent, addArticleComponent);
 
 const userManagementComponent = UserManagementComponent(userStore, userAction);
 
 const test = Test();
 
 const mainComponent = MainComponent(userManagementComponent);
-const router = Router(mainComponent, articleCollectionComponent, addArticleComponent, test);
-
+const router = Router(mainComponent, articleCollectionComponent, test);

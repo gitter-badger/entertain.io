@@ -1,18 +1,18 @@
-.example-enter {
+.route-change-enter {
   opacity: 0.01;
   transition: opacity .1s ease-in;
 }
 
-.example-enter.example-enter-active {
+.route-change-enter.route-change-enter-active {
   opacity: 1;
 }
 
-.example-leave {
+.route-change-leave {
   opacity: 1;
   transition: opacity .1s ease-in;
 }
 
-.example-leave.example-leave-active {
+.route-change-leave.route-change-leave-active {
   opacity: 0.01;
 }
 

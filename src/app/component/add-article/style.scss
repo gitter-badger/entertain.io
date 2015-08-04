@@ -1,32 +1,79 @@
 .component--add-article {
-  position: absolute;
-  top: 0px;
-  background: #fff;
-  top: 0px;
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
+  margin-top: 5px;
 
-  .input-field {
-    margin : 5px;
+  form {
+    // align-self: center;
+    // display: flex;
+    // flex-direction: row;
   }
 
-  &.route-change-enter {
-    top: -50px;
-    transition: .5s;
+  .article-url {
+    padding: 10px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    width: 500px;
+    outline: 0;
   }
 
-  &.route-change-enter.route-change-enter-active {
-    top: 0px;
+  .add-article {
+    background: #00b9ee;
+    border: 0;
+    height: 40px;
+    color: #fff;
+    cursor: pointer;
   }
-
-  &.route-change-leave {
-    top: 0px;
-    transition: .5s;
-  }
-
-  &.route-change-leave.route-change-leave-active {
-    top: -50px;
-  }
-
 }
+
+
+// .example-appear {
+//   // opacity: 0;
+//   // margin-top: 0px;
+//   margin-top: 5px;
+// }
+//
+// .example-appear.example-appear-active {
+//   margin-top: 35px;
+//   transition: .5s;
+// }
+//
+// //
+// //
+// .example-enter {
+//   margin-top: 35px;
+// }
+//
+// .example-enter.example-enter-active {
+//   margin-top: 35px;
+// }
+.example-appear {
+  opacity: 0.01;
+  margin-top: -100px;
+  transition: .5s;
+}
+
+.example-appear.example-appear-active {
+  margin-top: 5px;
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  margin-top: 5px;
+  transition: 1s;
+}
+
+.example-leave.example-leave-active {
+  margin-top: -100px;
+  opacity: 0.01;
+}
+
+//
+//
+// .example-leave {
+//   opacity: 1;
+// }
+//
+// .example-leave.example-leave-active {
+//   opacity: 0.01;
+//   transition: opacity .5s ease-in;
+// }
