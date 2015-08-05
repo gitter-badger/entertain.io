@@ -72,42 +72,46 @@ export default function create(ArticleStore, ArticleAction, Article) {
     render() {
 
       const articlePreview = (
-        <div>
-          <div className='input-field'>
-            <label htmlFor='title'>Title</label>
-            <input type='text' id='title' value={this.state.title} onChange={this.changeTitle.bind(this)}/>
+        <div className='article-preview'>
+          <div className='contents'>
+            <div className='article-detail'>
+              <label htmlFor='title'>Title</label>
+              <input type='text' id='title' value={this.state.title} onChange={this.changeTitle.bind(this)}/>
+            </div>
+
+            <div className='article-detail'>
+              <label htmlFor='desc'>Description</label>
+              <textarea id='desc' onChange={this.changeDesc.bind(this)}>{this.state.desc}</textarea>
+            </div>
+
+            <div className='article-detail'>
+              <label>Tags</label>
+              <ul className='tags'>
+                {this.state.tags.popular.concat(this.state.tags.recommended).map((tag, id) => (<li key={id} className="popular">{tag}</li>))}
+              </ul>
+            </div>
+
+            <button onClick={this.add.bind(this)}>Add Article</button>
           </div>
 
-          <div className='input-field'>
-            <label htmlFor='desc'>Description</label>
-            <input type='text' id='desc' value={this.state.desc} onChange={this.changeDesc.bind(this)}/>
+          <div className='preview'>
+            <Article key='article' {...this.state}/>
           </div>
-
-          <ul>
-            {this.state.tags.popular.map((tag, id) => (<li key={id} className="popular">{tag}</li>))}
-            {this.state.tags.recommended.map((tag, id) => (<li key={id} className="recommended">{tag}</li>))}
-          </ul>
-
-          <button onClick={this.add.bind(this)}>Add Article</button>
-
-          <Article key='article' {...this.state}/>
         </div>
       );
 
       return (
         <article className='component--add-article'>
 
-          <ReactCSSTransitionGroup component='div' transitionName="example" transitionAppear={true}>
+          <ReactCSSTransitionGroup component='div' transitionName="add-article" transitionAppear={true}>
             <form key='add-article' onSubmit={this.fetchMetadata.bind(this)}>
-              <input className='article-url' type='text' value={this.state.url} onChange={this.changeUrl.bind(this)} />
+              <input className='article-url' type='text' placeholder='Some article url' value={this.state.url} onChange={this.changeUrl.bind(this)} />
               <input className='add-article' type='submit'/>
             </form>
           </ReactCSSTransitionGroup>
 
 
-          <ReactCSSTransitionGroup transitionName="example">
-            { this.state.title ? articlePreview : '' }
-          </ReactCSSTransitionGroup>
+          { this.state.title ? articlePreview : '' }
 
         </article>
       );
