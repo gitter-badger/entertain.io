@@ -40,7 +40,6 @@ export default class ArticleCollection extends Component {
     return (
       <div>
         { this.state.showAddArticle ? <AddArticle /> : '' }
-        <button onClick={this.togglAddArticle.bind(this)}>+</button>
         <section className="component--article-collection">
           {this.state.articles.map((article) =>
               <Article key={article._id} {...article}/>
@@ -51,7 +50,8 @@ export default class ArticleCollection extends Component {
   }
 
   togglAddArticle() {
-
+    // Remove?
+    // <button onClick={this.togglAddArticle.bind(this)}>+</button>
     this.setState({showAddArticle: !this.state.showAddArticle});
   }
 }
