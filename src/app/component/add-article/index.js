@@ -22,6 +22,7 @@ export default class AddArticle extends Component {
       desc : '',
       url : '',
       image : '',
+      gotMetadata : false,
       tags : {
         popular: [],
         recommended: []
@@ -33,7 +34,8 @@ export default class AddArticle extends Component {
     this.setState({
       title : data.title,
       desc : data.desc,
-      image : data.image
+      image : data.image,
+      gotMetadata : true
     });
   }
 
@@ -121,8 +123,7 @@ export default class AddArticle extends Component {
           </form>
         </ReactCSSTransitionGroup>
 
-
-        { this.state.title ? articlePreview : '' }
+        { this.state.gotMetadata ? articlePreview : '' }
 
       </article>
     );

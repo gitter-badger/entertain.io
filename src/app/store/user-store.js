@@ -30,6 +30,11 @@ class UserStore extends EventEmitter {
         this.user = {};
         this.emit('change');
         break;
+
+      case 'add-article':
+        this.user.articles.push(payload.article._id);
+        this.emit('change');
+        break;
     }
 
     return true;

@@ -48,7 +48,6 @@
     align-self: center;
 
     .author {
-      @extend %disable-feature;
       .author-by {
         @extend %meta-data-author;
         color: #000;

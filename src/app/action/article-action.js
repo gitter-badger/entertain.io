@@ -1,3 +1,7 @@
+import Debug from 'debug';
+var debug = Debug('app:article-action');
+
+
 import Dispatcher from '../dispatcher';
 import ConnectionService from '../service/connection';
 
@@ -27,6 +31,7 @@ class ArticleAction {
 
     // call server
     ConnectionService.getPageMetadata(url, (err, data) => {
+      debug("get page metadata", err, data);
       // servers response
       Dispatcher.dispatch({
         eventName: 'metadata-update', data

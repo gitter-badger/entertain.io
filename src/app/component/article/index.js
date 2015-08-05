@@ -17,7 +17,7 @@ export default class Article extends Component {
           <div className="meta-data">
             <div className="author">
               <span className="author-by">By</span>
-              <span className="author-name">{''}</span>
+              <span className="author-name">{this.props.owner}</span>
             </div>
             <div className="publish-date">
               <span>{moment(this.props.date).format('h:mm:ss a')}</span>

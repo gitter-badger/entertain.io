@@ -8,7 +8,6 @@ export default function create() {
     request("https://entertainio:wiwroQlK@api.del.icio.us/v1/posts/suggest?red=api&url="+uri, (error, response, body) => {
 
       parseString(body, (err, res) => {
-        //console.log("res", JSON.stringify(res, " ", 2));
 
         if (res.result && res.result['$'].code == 'no suggestions')
           return callback(new Error('no suggestions'));

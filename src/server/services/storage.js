@@ -30,6 +30,7 @@ export default function create() {
           return db.collection('articles').insertOne(article);
         })
         .then((insertMsg) => {
+          article._id = insertMsg.insertedId;
           callback(null, article);
         })
         .catch((err) => {
