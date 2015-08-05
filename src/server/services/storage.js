@@ -21,11 +21,9 @@ export default function create() {
         })
     }
 
-    addArticle(user, article, callback) {
+    addArticle(article, callback) {
       this.mongo.db()
         .then((db) => {
-          article.date = new Date();
-          article.user = user;
           return db.collection('articles').insertOne(article);
         })
         .then((insertMsg) => {

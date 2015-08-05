@@ -15,7 +15,10 @@ export default function create(PageMetadata, Storage, Auth, TagSuggest) {
     }
 
     addArticle(article, session, callback) {
-      Storage.addArticle(session.user, article, callback);
+      article.date = new Date();
+      article.owner = user.username;
+
+      Storage.addArticle(article, callback);
     }
 
     login(username, password, session, callback) {
