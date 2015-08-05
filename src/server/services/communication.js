@@ -1,38 +1,38 @@
 import socketIO from 'socket.io';
 import cookieParser from 'cookie-parser';
 
-export default function create(Server, Action) {
+export default function create({server, action}) {
 
   class CommunicationServer {
 
-    io = socketIO(Server.server, {path: '/ws'});
+    io = socketIO(server.server, {path: '/ws'});
 
     constructor() {
 
       this.io.use(function(socket, next) {
-        Server.session(socket.request, socket.request.res, next);
+        server.session(socket.request, socket.request.res, next);
       });
 
       this.io.on('connection', (socket) => {
         
         socket.on('login', (username, password, callback) => {
-          Action.login(username, password, socket.request.session, callback);
+          action.login(username, password, socket.request.session, callback);
         });
 
         socket.on('logout', (callback) => {
-          Action.logout(socket.request.session, callback);
+          action.logout(socket.request.session, callback);
         });
 
         socket.on('current-user', (callback) => {
-          Action.currentUser(socket.request.session, callback);
+          action.currentUser(socket.request.session, callback);
         });
 
-        socket.on('page-metadata', Action.getPageMetadata.bind(Action));
-        socket.on('tag-suggest', Action.getTagSuggestion.bind(Action));
-        socket.on('latest-articles', Action.getLatestArticles.bind(Action));
+        socket.on('page-metadata', action.getPageMetadata.bind(action));
+        socket.on('tag-suggest', action.getTagSuggestion.bind(action));
+        socket.on('latest-articles', action.getLatestArticles.bind(action));
 
         socket.on('add-article', (article, callback) => {
-          Action.addArticle(article, socket.request.session, callback);
+          action.addArticle(article, socket.request.session, callback);
         });
 
       });

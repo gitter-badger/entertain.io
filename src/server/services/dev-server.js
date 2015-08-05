@@ -4,7 +4,7 @@ import path from 'path';
 import config from '../../../config/development.webpack';
 
 
-export default function create(Server) {
+export default function create({server}) {
 
   class DevServer {
 
@@ -18,7 +18,7 @@ export default function create(Server) {
         contentBase: path.resolve('dist'),
         stats: { colors: true },
         proxy: {
-          '*': `http://localhost:${Server.PORT}`
+          '*': `http://localhost:${server.PORT}`
         }
       }).listen(this.PORT, 'localhost', (err) => {
           if (err) {

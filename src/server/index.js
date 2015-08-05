@@ -11,15 +11,15 @@ const pageMetadata = PageMetadata();
 const tagSuggest = TagSuggest();
 const storage = Storage();
 const auth = Auth();
-const action = Action(pageMetadata, storage, auth, tagSuggest);
+const action = Action({pageMetadata, storage, auth, tagSuggest});
 
 storage.mongo.db().then((db) => {
 
-  const server = Server(db);
-  const communication = Communication(server, action);
+  const server = Server({db});
+  const communication = Communication({server, action});
 
   if (process.env.NODE_ENV !== 'production') {
-    new DevServer(server);
+    new DevServer({server});
   }
 
 });

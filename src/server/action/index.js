@@ -1,27 +1,30 @@
-export default function create(PageMetadata, Storage, Auth, TagSuggest) {
+export default function create({pageMetadata, storage, auth, tagSuggest}) {
 
   class Action {
 
     getPageMetadata(uri, callback) {
-      PageMetadata(uri, callback)
+      pageMetadata(uri, callback)
     }
 
     getTagSuggestion(uri, callback) {
-      TagSuggest(uri, callback);
+      tagSuggest(uri, callback);
     }
 
     getLatestArticles(callback) {
-      Storage.latestArticles(callback);
+      storage.latestArticles(callback);
     }
 
     addArticle(article, session, callback) {
-      Storage.addArticle(session.user, article, callback);
+      article.date = new Date();
+      article.owner = user.username;
+
+      storage.addArticle(article, callback);
     }
 
     login(username, password, session, callback) {
-      session.auth = Auth.areCredentialsCorrect(username, password);
+      session.auth = auth.areCredentialsCorrect(username, password);
       if (session.auth) {
-        session.user = Auth.getUser(username);
+        session.user = auth.getUser(username);
         session.save();
         callback(null, session.user);
       } else {
