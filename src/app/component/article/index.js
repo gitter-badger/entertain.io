@@ -6,6 +6,13 @@ require('./style.scss');
 export default class Article extends Component {
 
   render() {
+    let twitter = this.props.shareCount && this.props.shareCount.Twitter
+      ? this.props.shareCount.Twitter : '-';
+    let facebook = this.props.shareCount && this.props.shareCount.Facebook && this.props.shareCount.Facebook.total_count
+      ? this.props.shareCount.Facebook.total_count : '-';
+    let google = this.props.shareCount && this.props.shareCount.GooglePlusOne
+      ? this.props.shareCount.GooglePlusOne : '-';
+
     return (
       <article className="article">
         <div className="meta">
@@ -13,6 +20,11 @@ export default class Article extends Component {
             <a href={''} target="_blank">
               <img src={''} />
             </a>
+            <div className="TODO">
+              Twitter: {twitter},
+              Facebook: {facebook},
+              Google+: {google}
+            </div>
           </div>
           <div className="meta-data">
             <div className="author">

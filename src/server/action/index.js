@@ -1,6 +1,6 @@
 import async from  'async';
 
-export default function create({pageMetadata, storage, auth, tagSuggest}) {
+export default function create({pageMetadata, storage, auth, tagSuggest, shareCount}) {
 
   class Action {
 
@@ -21,13 +21,18 @@ export default function create({pageMetadata, storage, auth, tagSuggest}) {
 
       article.upvotes = [session.user.username];
 
-      storage.addArticle(article, session.user.username, (err, article) => {
-        console.log("-- article", err, article);
-        session.user.articles.push(article._id);
-        session.save();
-        storage.saveUser(session.user, (err) => {
-          callback(err, article);
+      shareCount(article.url, (err, shareCount) => {
+        article.shareCount = shareCount;
+
+        storage.addArticle(article, session.user.username, (err, article) => {
+          console.log("-- article", err, article);
+          session.user.articles.push(article._id);
+          session.save();
+          storage.saveUser(session.user, (err) => {
+            callback(err, article);
+          });
         });
+
       });
 
     }
