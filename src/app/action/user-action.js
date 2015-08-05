@@ -1,50 +1,50 @@
 import Debug from 'debug';
+var debug = Debug('app:user-action');
 
-export default function create(Dispatcher, ConnectionService) {
+import Dispatcher from '../dispatcher';
+import ConnectionService from '../service/connection';
 
-  var debug = Debug('app:user-action');
 
-  class UserAction {
+class UserAction {
 
-    login(username, password) {
-      ConnectionService.login(username, password, (err, user) => {
-        debug("ConnectionService.login", err, user);
-        if (!err) {
-          Dispatcher.dispatch({
-            eventName: 'user', user
-          });
-        } else {
-          Dispatcher.dispatch({
-            eventName: 'login-failed', err
-          });
-        }
-      })
-    }
-
-    logout() {
-      ConnectionService.logout((err) => {
+  login(username, password) {
+    ConnectionService.login(username, password, (err, user) => {
+      debug("ConnectionService.login", err, user);
+      if (!err) {
         Dispatcher.dispatch({
-          eventName: 'logged-out'
+          eventName: 'user', user
         });
-      });
-    }
-
-    // get current user from session
-    currentUser() {
-      ConnectionService.currentUser((err, user) => {
-        if (!err) {
-          Dispatcher.dispatch({
-            eventName: 'user', user
-          });
-        }
-      });
-    }
-
-    // bootstrap
-    constructor() {
-      this.currentUser();
-    }
+      } else {
+        Dispatcher.dispatch({
+          eventName: 'login-failed', err
+        });
+      }
+    })
   }
 
-  return new UserAction();
+  logout() {
+    ConnectionService.logout((err) => {
+      Dispatcher.dispatch({
+        eventName: 'logged-out'
+      });
+    });
+  }
+
+  // get current user from session
+  currentUser() {
+    ConnectionService.currentUser((err, user) => {
+      if (!err) {
+        Dispatcher.dispatch({
+          eventName: 'user', user
+        });
+      }
+    });
+  }
+
+  // bootstrap
+  constructor() {
+    this.currentUser();
+  }
 }
+
+export default new UserAction();

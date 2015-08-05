@@ -1,49 +1,48 @@
 import {EventEmitter} from 'events';
 
-export default function create(Dispatcher) {
+import Dispatcher from '../dispatcher';
 
-  class ArticleStore extends EventEmitter {
 
-    articles = [];
+class ArticleStore extends EventEmitter {
 
-    dispatchToken = Dispatcher.register((payload) => {
+  articles = [];
 
-      switch (payload.eventName) {
-        case 'latest-articles':
-          this.articles = payload.articles;
-          this.emit('change');
-          break;
+  dispatchToken = Dispatcher.register((payload) => {
 
-        case 'add-article':
-          this.addArticle(payload.article);
-          break;
+    switch (payload.eventName) {
+      case 'latest-articles':
+        this.articles = payload.articles;
+        this.emit('change');
+        break;
 
-        case 'metadata-update':
-          this.emit('metadata-update', payload.data);
-          break;
+      case 'add-article':
+        this.addArticle(payload.article);
+        break;
 
-        case 'tag-suggestions':
-          this.emit('tag-suggestions', payload.data);
-          break;
-      }
+      case 'metadata-update':
+        this.emit('metadata-update', payload.data);
+        break;
 
-      return true;
-    });
-
-    addArticle(article) {
-      this.articles.unshift(article);
-      this.emit('article-added');
-      this.emit('change');
+      case 'tag-suggestions':
+        this.emit('tag-suggestions', payload.data);
+        break;
     }
 
-    constructor() {
-      super();
+    return true;
+  });
 
-      window.articleStore = this; // debugging
-    }
-
-
+  addArticle(article) {
+    this.articles.unshift(article);
+    this.emit('article-added');
+    this.emit('change');
   }
 
-  return new ArticleStore();
+  constructor() {
+    super();
+
+    window.articleStore = this; // debugging
+  }
+
 }
+
+export default new ArticleStore();

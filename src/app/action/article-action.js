@@ -1,53 +1,52 @@
+import Dispatcher from '../dispatcher';
+import ConnectionService from '../service/connection';
 
-export default function create(Dispatcher, ConnectionService) {
+class ArticleAction {
 
-  class ArticleAction {
-
-    latestArticles() {
-      ConnectionService.latestArticles((err, articles) => {
-        Dispatcher.dispatch({
-          eventName: 'latest-articles', articles
-        });
-      })
-    }
-
-    addArticle(article) {
-      ConnectionService.addArticle(article, (err, article) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        Dispatcher.dispatch({
-          eventName: 'add-article', article
-        });
+  latestArticles() {
+    ConnectionService.latestArticles((err, articles) => {
+      Dispatcher.dispatch({
+        eventName: 'latest-articles', articles
       });
-    }
+    })
+  }
 
-    fetchMetadata(url) {
-
-      // call server
-      ConnectionService.getPageMetadata(url, (err, data) => {
-        // servers response
-        Dispatcher.dispatch({
-          eventName: 'metadata-update', data
-        });
+  addArticle(article) {
+    ConnectionService.addArticle(article, (err, article) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      Dispatcher.dispatch({
+        eventName: 'add-article', article
       });
+    });
+  }
 
-      ConnectionService.getTagSuggest(url, (err, data) => {
-        if (!err)
-          Dispatcher.dispatch({
-            eventName: 'tag-suggestions', data
-          });
-      })
+  fetchMetadata(url) {
 
-    }
+    // call server
+    ConnectionService.getPageMetadata(url, (err, data) => {
+      // servers response
+      Dispatcher.dispatch({
+        eventName: 'metadata-update', data
+      });
+    });
 
-    // bootstrap
-    constructor() {
-      this.latestArticles();
-    }
+    ConnectionService.getTagSuggest(url, (err, data) => {
+      if (!err)
+        Dispatcher.dispatch({
+          eventName: 'tag-suggestions', data
+        });
+    })
 
   }
 
-  return new ArticleAction();
+  // bootstrap
+  constructor() {
+    this.latestArticles();
+  }
+
 }
+
+export default new ArticleAction();
