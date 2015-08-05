@@ -7,7 +7,7 @@ import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
-export default function create(Db) {
+export default function create({db}) {
 
   const mongoSessionStore = connectMongo(expressSession);
 
@@ -16,7 +16,7 @@ export default function create(Db) {
     PORT = process.env.PORT || 8000;
 
     session = expressSession({
-      store : new mongoSessionStore({ db : Db }),
+      store : new mongoSessionStore({ db : db }),
       secret: 'Hyp-du-Q',
       resave: true,
       saveUninitialized: true
