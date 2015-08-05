@@ -2,7 +2,7 @@ import MongoQ from '../lib/mongoQ'
 
 export default function create() {
 
-  const MONGO_URI = 'mongodb://127.0.0.1:27017/entertain';
+  const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/entertain';
 
   class Storage {
 
