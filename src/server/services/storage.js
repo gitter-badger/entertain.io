@@ -36,6 +36,24 @@ export default function create() {
           callback(err);
         })
     }
+
+    getUser(username, callback) {
+      this.mongo.db()
+        .then(db => db.collection('users').findOne({username}))
+        .then(user => {
+          if (!user) callback('user not found!');
+          else callback(null, user)
+        })
+        .catch(err => callback(err));
+
+    }
+
+    saveUser(user, callback) {
+      this.mongo.db()
+        .then(db => db.collection('users').save(user))
+        .then(user => callback(null, user))
+        .catch(err => callback(err));
+    }
   }
 
   return new Storage();

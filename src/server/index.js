@@ -10,7 +10,7 @@ import Action from './action';
 const pageMetadata = PageMetadata();
 const tagSuggest = TagSuggest();
 const storage = Storage();
-const auth = Auth();
+const auth = Auth({storage});
 const action = Action({pageMetadata, storage, auth, tagSuggest});
 
 storage.mongo.db().then((db) => {

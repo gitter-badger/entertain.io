@@ -1,29 +1,33 @@
 ///<reference path='../typing.d.ts'/>
 
-export default function create() {
+export default function create({storage}) {
 
   class AuthService {
 
-    users = {
-      'jonathan' : {
-        username : 'jonathan',
-        password : 'test'
-      },
-      'michael' : {
-        username : 'michael',
-        password : 'test'
-      }
-    };
+    login(username, password, session, callback) {
+      storage.getUser(username, (err, user) => {
+        if (err) return callback(err);
 
-    getUser(user) {
-      return this.users[user];
+        session.auth = this.areCredentialsCorrect(user, password);
+        if (session.auth) {
+          session.user = user;
+          session.save();
+          callback(null, session.user);
+        } else {
+          callback('Wrong credentials');
+        }
+      });
     }
 
-    areCredentialsCorrect(username, password) {
-      if (this.users.hasOwnProperty(username) &&
-          this.users[username].password === password
-        ) return true;
-      else return false;
+    logout(session, callback) {
+      delete session.user;
+      session.auth = false;
+      session.save();
+      callback(null);
+    }
+
+    areCredentialsCorrect(user, password) {
+      return user.password === password;
     }
 
   }

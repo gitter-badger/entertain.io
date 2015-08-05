@@ -19,21 +19,11 @@ export default function create({pageMetadata, storage, auth, tagSuggest}) {
     }
 
     login(username, password, session, callback) {
-      session.auth = auth.areCredentialsCorrect(username, password);
-      if (session.auth) {
-        session.user = auth.getUser(username);
-        session.save();
-        callback(null, session.user);
-      } else {
-        callback('Wrong credentials');
-      }
+      auth.login(username, password, session, callback);
     }
 
     logout(session, callback) {
-      delete session.user;
-      session.auth = false;
-      session.save();
-      callback(null);
+      auth.logout(session, callback);
     }
 
     currentUser(session, callback) {
