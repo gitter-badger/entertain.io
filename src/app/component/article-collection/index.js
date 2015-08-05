@@ -18,12 +18,18 @@ export default function create(ArticleStore, Article, AddArticle) {
       this.setState({articles: ArticleStore.articles});
     }
 
+    articleAdded() {
+      this.setState({showAddArticle : false});
+    }
+
     componentDidMount() {
       ArticleStore.on('change', this.articleListChanged.bind(this));
+      ArticleStore.on('article-added', this.articleAdded.bind(this));
     }
 
     componentWillUnmount() {
       ArticleStore.removeListener('change', this.articleListChanged.bind(this));
+      ArticleStore.removeListener('article-added', this.articleAdded.bind(this));
     }
 
     render() {

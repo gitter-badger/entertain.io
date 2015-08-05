@@ -3,8 +3,6 @@ const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
 require('./style.scss');
 
-let dummyArticleUrl = 'http://techcrunch.com/2015/07/26/jack-dorseys-first-order-of-business-as-interim-ceo-twitter-support-to-the-stars/';
-
 export default function create(ArticleStore, ArticleAction, Article) {
 
   class AddArticle extends Component {
@@ -12,16 +10,20 @@ export default function create(ArticleStore, ArticleAction, Article) {
     constructor(props) {
       super(props);
 
-      this.state = {
+      this.state = this.getInitState();
+    }
+
+    getInitState() {
+      return {
         title : '',
         desc : '',
-        url : dummyArticleUrl,
+        url : '',
         image : '',
         tags : {
           popular: [],
           recommended: []
         }
-      };
+      }
     }
 
     metadataUpdated(data) {
@@ -37,14 +39,20 @@ export default function create(ArticleStore, ArticleAction, Article) {
       this.setState({tags : data});
     }
 
+    articleAdded() {
+       this.setState(this.getInitState());
+    }
+
     componentDidMount() {
       ArticleStore.on('metadata-update', this.metadataUpdated.bind(this));
       ArticleStore.on('tag-suggestions', this.tagSuggestionUpdate.bind(this));
+      ArticleStore.on('article-added', this.articleAdded.bind(this));
     }
 
     componentWillUnmount() {
       ArticleStore.removeListener('metadata-update', this.metadataUpdated.bind(this));
       ArticleStore.removeListener('tag-suggestions', this.tagSuggestionUpdate.bind(this));
+      ArticleStore.removeListener('article-added', this.articleAdded.bind(this));
     }
 
     changeTitle(event) {

@@ -31,7 +31,8 @@ export default function create(Dispatcher) {
     });
 
     addArticle(article) {
-      this.articles.push(article);
+      this.articles.unshift(article);
+      this.emit('article-added');
       this.emit('change');
     }
 
