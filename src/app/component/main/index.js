@@ -24,11 +24,13 @@ export default class Main extends Component {
             <span className="io-part">IO</span>
           </Link>
           <nav className="navigation">
-            <Link to="/">Article-Collection</Link>
+            <Link to="/">Articles</Link>
             <Link to="/add-article">+</Link>
-            <Link to="/test">test</Link>
+            <Link to="/test">Test-Page</Link>
           </nav>
-          <UserManagement/>
+          <div className='user-management'>
+            <UserManagement/>
+          </div>
         </div>
         <div className="body">
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
