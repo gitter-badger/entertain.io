@@ -8,9 +8,16 @@ export default function create() {
     request("https://entertainio:wiwroQlK@api.del.icio.us/v1/posts/suggest?red=api&url="+uri, (error, response, body) => {
 
       parseString(body, (err, res) => {
+        if (err) return callback(err);
 
         if (res.result && res.result['$'].code == 'no suggestions')
           return callback(new Error('no suggestions'));
+
+        if (!res.suggest)
+          return callback(new Error('no suggestions'));
+
+        res.suggest.popular = res.suggest.popular || [];
+        res.suggest.recommended = res.suggest.recommended || [];
 
         return callback(null, {
           popular : res.suggest.popular.map((n) => n['$'].tag),
