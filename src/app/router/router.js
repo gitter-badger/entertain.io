@@ -1,11 +1,12 @@
 import React from 'react';
 import Router, {Route} from 'react-router';
 
-export default function create(Main, ArticleCollection, Test) {
+export default function create(Main, ArticleCollection, Test, AddArticle) {
 
   const routes = (
     <Route handler={Main}>
       <Route path="/" handler={ArticleCollection}/>
+      <Route path="/add-article" handler={AddArticle}/>
       <Route path="/test" handler={Test}/>
     </Route>
   );

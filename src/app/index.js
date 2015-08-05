@@ -39,4 +39,4 @@ const userManagementComponent = UserManagementComponent(userStore, userAction);
 const test = Test();
 
 const mainComponent = MainComponent(userManagementComponent);
-const router = Router(mainComponent, articleCollectionComponent, test);
+const router = Router(mainComponent, articleCollectionComponent, test, addArticleComponent);
