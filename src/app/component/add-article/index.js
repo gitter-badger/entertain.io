@@ -118,7 +118,7 @@ export default class AddArticle extends Component {
 
         <ReactCSSTransitionGroup component='div' transitionName="add-article" transitionAppear={true}>
           <form key='add-article' onSubmit={this.fetchMetadata.bind(this)}>
-            <input className='article-url' type='text' placeholder='Some article url' value={this.state.url} onChange={this.changeUrl.bind(this)} />
+            <input className='article-url' type='text' placeholder='Give me some Article-URL' value={this.state.url} onChange={this.changeUrl.bind(this)} />
             <input className='add-article' type='submit'/>
           </form>
         </ReactCSSTransitionGroup>
