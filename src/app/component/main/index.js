@@ -24,6 +24,7 @@ export default function create(UserManagement) {
             </Link>
             <nav className="navigation">
               <Link to="/">Article-Collection</Link>
+              <Link to="/add-article">+</Link>
               <Link to="/test">test</Link>
             </nav>
             <UserManagement/>
