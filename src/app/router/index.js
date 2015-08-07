@@ -17,7 +17,7 @@ export default class {
   );
 
   constructor(root) {
-    Router.run(this.routes, Router.HistoryLocation, (Root) => {
+    Router.run(this.routes, Router.HashLocation, (Root) => {
       React.render(<Root/>, root);
     });
   }
