@@ -1,6 +1,6 @@
 import {EventEmitter} from 'events';
 
-import Dispatcher from '../dispatcher';
+import Dispatcher from '~/src/app/dispatcher';
 
 
 class ArticleStore extends EventEmitter {

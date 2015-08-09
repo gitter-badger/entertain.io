@@ -1,10 +1,10 @@
 import React from 'react';
 import Router, {Route} from 'react-router';
 
-import Main from '../component/main';
-import ArticleCollection from '../component/article-collection';
-import Test from '../component/test';
-import AddArticle from '../component/add-article';
+import Main from '~/src/app/component/main';
+import ArticleCollection from '~/src/app/component/article-collection';
+import Test from '~/src/app/component/test';
+import AddArticle from '~/src/app/component/add-article';
 
 
 export default class {

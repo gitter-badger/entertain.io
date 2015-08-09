@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import ArticleStore from '../../store/article-store';
-import Article from '../article';
-import AddArticle from '../add-article'
+import ArticleStore from '~/src/app/store/article-store';
+import Article from '~/src/app/component/article';
+import AddArticle from '~/src/app/component/add-article'
 
 require('./style.scss');
 
