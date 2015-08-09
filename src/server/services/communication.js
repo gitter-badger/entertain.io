@@ -14,7 +14,7 @@ export default function create({server, action}) {
       });
 
       this.io.on('connection', (socket) => {
-        
+
         socket.on('login', (username, password, callback) => {
           action.login(username, password, socket.request.session, callback);
         });
