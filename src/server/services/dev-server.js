@@ -17,6 +17,7 @@ export default function create({server}) {
         historyApiFallback: true,
         contentBase: path.resolve('dist'),
         stats: { colors: true },
+        noInfo: true,
         proxy: {
           '*': `http://localhost:${server.PORT}`
         }
