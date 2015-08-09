@@ -2,7 +2,6 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
 import connectMongo from 'connect-mongo';
-import http from 'http';
 import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
