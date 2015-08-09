@@ -1,12 +1,10 @@
 import React, { Component, addons } from 'react/addons';
-const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
-import ArticleStore from '../../store/article-store';
-import ArticleAction from '../../action/article-action';
-import Article from '../article';
+import ArticleStore from '~/src/app/store/article-store';
+import ArticleAction from '~/src/app/action/article-action';
+import Article from '~/src/app/component/article';
 
 require('./style.scss');
-
 
 export default class AddArticle extends Component {
 
@@ -78,6 +76,7 @@ export default class AddArticle extends Component {
   }
 
   fetchMetadata(event) {
+    console.log('fetch something', this.state.url);
     event.preventDefault();
     ArticleAction.fetchMetadata(this.state.url);
   }
@@ -115,13 +114,10 @@ export default class AddArticle extends Component {
 
     return (
       <article className='component--add-article'>
-
-        <ReactCSSTransitionGroup component='div' transitionName="add-article" transitionAppear={true}>
-          <form key='add-article' onSubmit={this.fetchMetadata.bind(this)}>
-            <input className='article-url' type='text' placeholder='Give me some Article-URL' value={this.state.url} onChange={this.changeUrl.bind(this)} />
-            <input className='add-article' type='submit'/>
-          </form>
-        </ReactCSSTransitionGroup>
+        <form key='add-article' onSubmit={this.fetchMetadata.bind(this)}>
+          <input className='article-url' type='text' placeholder='Give me some Article-URL' value={this.state.url} onChange={this.changeUrl.bind(this)} />
+          <input className='add-article' type='submit'/>
+        </form>
 
         { this.state.gotMetadata ? articlePreview : '' }
 
