@@ -56,7 +56,7 @@ export default class UserManagementComponent extends Component {
     );
 
     return (
-      <section className="component--user-management">
+      <section className="component--login">
         {this.state.user.loggedIn ? loggedin : login}
       </section>
     );
