@@ -3,8 +3,9 @@ import { Link, RouteHandler } from 'react-router';
 
 const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
-import UserManagement from '../user-management';
+import UserManagement from '../login';
 
+require('../../index.scss')
 require('./style.scss');
 
 export default class Main extends Component {
@@ -25,12 +26,8 @@ export default class Main extends Component {
           </Link>
           <nav className="navigation">
             <Link to="/">Articles</Link>
-            <Link to="/add-article">+</Link>
-            <Link to="/test">Test-Page</Link>
+            <Link to="/login">Login</Link>
           </nav>
-          <div className='user-management'>
-            <UserManagement/>
-          </div>
         </div>
         <div className="body">
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
