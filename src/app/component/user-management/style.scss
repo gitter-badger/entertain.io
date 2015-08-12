@@ -1,9 +1,6 @@
 .component--user-management {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  position: relative;
-
+  text-align: center;
+  margin: 30px;
   .error {
     color: red;
     position: absolute;
@@ -31,14 +28,15 @@
   }
 
   .login {
+    input {
+      display: block;
+      margin: 10px auto;
+      width: 510px;
+      padding: 15px 10px;
+    }
     input[type='text'],
     input[type='password'] {
-      padding: 10px;
-      width: 110px;
-      text-align: center;
       border: 0;
-      margin: 0 5px;
-      border-bottom: 1px dotted #aaa;
       &:focus {
         outline: 0;
         border-color: #00b9ee;
