@@ -1,0 +1,35 @@
+// Theme Function
+@mixin theme($theme: 'light') { @if $theme == 'light' { @extend %lightTheme; } @if $theme == 'dark' { @extend %darkTheme; } }
+
+$main-color: red;
+// Style the themes
+%lightTheme {}
+
+%darkTheme {
+  .structure--main {
+    .body {
+      background: #212121;
+    }
+    .header, .footer {
+      background: #333;
+      box-shadow: none;
+    }
+    .header {
+      border-bottom: 0;
+      .logo span {
+        color: #469dc5 !important;
+      }
+      .navigation a {
+        color: #f0874f;
+        border-color: none;
+        &.active, &:hover {
+          border-color: #89f5a2;
+        }
+      }
+    }
+  }
+}
+
+body {
+  @include theme('dark');
+}
