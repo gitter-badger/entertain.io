@@ -1,9 +1,7 @@
 import Debug from 'debug';
-var debug = Debug('app:user-action');
-
 import Dispatcher from '../dispatcher';
 import ConnectionService from '../service/connection';
-
+const debug = Debug('app:user-action');
 
 class UserAction {
 
@@ -45,7 +43,6 @@ class UserAction {
     });
   }
 
-  // get current user from session
   currentUser() {
     ConnectionService.currentUser((err, user) => {
       if (!err) {
@@ -56,7 +53,6 @@ class UserAction {
     });
   }
 
-  // bootstrap
   constructor() {
     this.currentUser();
   }

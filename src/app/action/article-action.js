@@ -1,12 +1,9 @@
 import Debug from 'debug';
-var debug = Debug('app:article-action');
-
-
 import Dispatcher from '../dispatcher';
 import ConnectionService from '../service/connection';
+const debug = Debug('app:article-action');
 
 class ArticleAction {
-
   latestArticles() {
     ConnectionService.latestArticles((err, articles) => {
       Dispatcher.dispatch({
@@ -28,11 +25,8 @@ class ArticleAction {
   }
 
   fetchMetadata(url) {
-
-    // call server
     ConnectionService.getPageMetadata(url, (err, data) => {
       debug("get page metadata", err, data);
-      // servers response
       Dispatcher.dispatch({
         eventName: 'metadata-update', data
       });
@@ -43,15 +37,12 @@ class ArticleAction {
         Dispatcher.dispatch({
           eventName: 'tag-suggestions', data
         });
-    })
-
+    });
   }
 
-  // bootstrap
   constructor() {
     this.latestArticles();
   }
-
 }
 
 export default new ArticleAction();

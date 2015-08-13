@@ -4,6 +4,7 @@ const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 import ArticleStore from '~/src/app/store/article-store';
 import ArticleAction from '~/src/app/action/article-action';
 import Article from '~/src/app/component/article';
+import MainStore from '~/src/app/store/main-store';
 
 require('./style.scss');
 
@@ -26,7 +27,7 @@ export default class AddArticle extends Component {
         popular: [],
         recommended: []
       },
-      togglActiveAddArticle: false
+      showAddArticle: false
     }
   }
 
@@ -52,12 +53,14 @@ export default class AddArticle extends Component {
     ArticleStore.on('metadata-update', this.metadataUpdated.bind(this));
     ArticleStore.on('tag-suggestions', this.tagSuggestionUpdate.bind(this));
     ArticleStore.on('article-added', this.articleAdded.bind(this));
+    MainStore.on('body-clicked', this.bodyClick.bind(this))
   }
 
   componentWillUnmount() {
     ArticleStore.removeListener('metadata-update', this.metadataUpdated.bind(this));
     ArticleStore.removeListener('tag-suggestions', this.tagSuggestionUpdate.bind(this));
     ArticleStore.removeListener('article-added', this.articleAdded.bind(this));
+    MainStore.removeListener('body-clicked', this.bodyClick.bind(this))
   }
 
   changeTitle(event) {
@@ -83,10 +86,18 @@ export default class AddArticle extends Component {
     ArticleAction.fetchMetadata(this.state.url);
   }
 
-  togglActiveAddArticle() {
+  showActiveAddArticle() {
     this.setState({
-      togglActiveAddArticle: !this.state.togglActiveAddArticle
+      showAddArticle: true
     })
+  }
+
+  bodyClick(e) {
+    if(e.target.className.indexOf('component--article-collection') !== -1) {
+      this.setState({
+        showAddArticle: false
+      });
+    }
   }
 
   render() {
@@ -123,33 +134,27 @@ export default class AddArticle extends Component {
     const stuff = (
       <div>
         <span className='someSpan'>URL</span>
-
         <input className='article-url' type='text' placeholder='Submit a new link...' value={this.state.url} onChange={this.changeUrl.bind(this)} />
-        <button onClick={this.togglActiveAddArticle.bind(this)}>Close</button>
         <input className='add-article' type='submit'/>
       </div>
     );
+        // { articlePreview }
 
     const style = {};
 
-    if(this.state.togglActiveAddArticle === true) {
+    if(this.state.showAddArticle === true) {
       style.height = 100;
     }
 
     return (
       <article className='component--add-article'>
         <form key='add-article' ref="addArticleForm" style={style} onSubmit={this.fetchMetadata.bind(this)}>
-          <input type='text' className='article-url' onFocus={this.togglActiveAddArticle.bind(this)} placeholder='Write something...' />
+          <input type='text' className='article-url' onFocus={this.showActiveAddArticle.bind(this)} placeholder='Write something...' />
 
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
-            { this.state.togglActiveAddArticle ? stuff : '' }
+            { this.state.showAddArticle ? stuff : '' }
           </ReactCSSTransitionGroup>
-
-
         </form>
-
-        { this.state.gotMetadata ? articlePreview : '' }
-
       </article>
     );
   }

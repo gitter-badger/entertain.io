@@ -1,5 +1,6 @@
 import React, { Component, addons } from 'react/addons';
 import { Link, RouteHandler } from 'react-router';
+import MainAction from '../../action/main-action';
 
 const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
@@ -13,6 +14,10 @@ export default class Main extends Component {
   static contextTypes = {
     router: React.PropTypes.func.isRequired
   };
+
+  bodyClick(e) {
+    MainAction.bodyClick(e);
+  }
 
   render() {
     let name = this.context.router.getCurrentPath();
@@ -30,7 +35,7 @@ export default class Main extends Component {
             <Link to="/register">Register</Link>
           </nav>
         </div>
-        <div className="body">
+        <div className="body" onClick={this.bodyClick.bind(this)}>
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
             <RouteHandler key={name}/>
           </ReactCSSTransitionGroup>

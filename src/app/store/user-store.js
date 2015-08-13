@@ -1,15 +1,12 @@
 import {EventEmitter} from 'events';
-
 import Dispatcher from '../dispatcher';
 
 class UserStore extends EventEmitter {
-
   user = {};
   loggedIn = false;
   errorMsg = "";
 
   dispatchToken = Dispatcher.register((payload) => {
-
     switch (payload.eventName) {
       case 'user':
         this.loggedIn = true;
@@ -36,15 +33,12 @@ class UserStore extends EventEmitter {
         this.emit('change');
         break;
     }
-
-    return true;
   });
 
   constructor() {
     super();
     window.userStore = this; // debugging
   }
-
 }
 
 export default new UserStore();
