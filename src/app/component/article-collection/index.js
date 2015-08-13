@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-
 import ArticleStore from '~/src/app/store/article-store';
 import Article from '~/src/app/component/article';
 import AddArticle from '~/src/app/component/add-article'
 
 require('./style.scss');
 
-
 export default class ArticleCollection extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +33,6 @@ export default class ArticleCollection extends Component {
   }
 
   render() {
-
     return (
       <div>
         <AddArticle />

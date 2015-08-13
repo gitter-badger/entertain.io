@@ -1,14 +1,11 @@
 import {EventEmitter} from 'events';
-
 import Dispatcher from '~/src/app/dispatcher';
-
 
 class ArticleStore extends EventEmitter {
 
   articles = [];
 
   dispatchToken = Dispatcher.register((payload) => {
-
     switch (payload.eventName) {
       case 'latest-articles':
         this.articles = payload.articles;
@@ -27,8 +24,6 @@ class ArticleStore extends EventEmitter {
         this.emit('tag-suggestions', payload.data);
         break;
     }
-
-    return true;
   });
 
   addArticle(article) {
@@ -42,7 +37,6 @@ class ArticleStore extends EventEmitter {
 
     window.articleStore = this; // debugging
   }
-
 }
 
 export default new ArticleStore();
