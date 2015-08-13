@@ -7,6 +7,21 @@ import ConnectionService from '../service/connection';
 
 class UserAction {
 
+  register(username, password) {
+    ConnectionService.register(username, password, (err) => {
+      debug("ConnectionService.register", err);
+      if (!err) {
+        Dispatcher.dispatch({
+          eventName: 'register-success'
+        });
+      } else {
+        Dispatcher.dispatch({
+          eventName: 'register-failed', err
+        });
+      }
+    });
+  }
+
   login(username, password) {
     ConnectionService.login(username, password, (err, user) => {
       debug("ConnectionService.login", err, user);

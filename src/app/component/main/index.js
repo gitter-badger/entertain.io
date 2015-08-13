@@ -5,7 +5,7 @@ const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
 import UserManagement from '../login';
 
-require('../../index.scss')
+require('../../index.scss');
 require('./style.scss');
 
 export default class Main extends Component {
@@ -27,6 +27,7 @@ export default class Main extends Component {
           <nav className="navigation">
             <Link to="/">Articles</Link>
             <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </nav>
         </div>
         <div className="body">

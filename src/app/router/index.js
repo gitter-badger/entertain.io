@@ -5,6 +5,7 @@ import Main from '~/src/app/component/main';
 import ArticleCollection from '~/src/app/component/article-collection';
 import AddArticle from '~/src/app/component/add-article';
 import Login from '~/src/app/component/login';
+import Register from '~/src/app/component/register';
 
 
 export default class {
@@ -12,6 +13,7 @@ export default class {
     <Route handler={Main}>
       <Route path="/" handler={ArticleCollection}/>
       <Route path="/login" handler={Login}/>
+      <Route path="/register" handler={Register}/>
     </Route>
   );
 

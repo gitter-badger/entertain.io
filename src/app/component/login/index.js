@@ -5,7 +5,7 @@ require('./style.scss');
 import UserStore from '../../store/user-store';
 import UserAction from '../../action/user-action';
 
-export default class UserManagementComponent extends Component {
+export default class LoginComponent extends Component {
 
   constructor(props) {
     super(props);
@@ -29,7 +29,6 @@ export default class UserManagementComponent extends Component {
     const username = React.findDOMNode(this.refs.username).value;
     const password = React.findDOMNode(this.refs.password).value;
     UserAction.login(username, password);
-
   }
 
   logout() {
