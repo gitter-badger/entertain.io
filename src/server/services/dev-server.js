@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import path from 'path';
-import config from '../../../config/development.webpack';
+import config from '~/config/development.webpack';
 
 
 export default function create({server}) {
