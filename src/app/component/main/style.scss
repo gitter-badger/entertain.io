@@ -1,6 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,700,600);
+@import '../../static/styles/reset';
+
 .route-change-enter {
   opacity: 0.01;
-  transition: opacity .1s ease-in;
+  transition: .1s;
 }
 
 .route-change-enter.route-change-enter-active {
@@ -9,20 +12,12 @@
 
 .route-change-leave {
   opacity: 1;
-  transition: opacity .1s ease-in;
+  transition: .1s;
 }
 
 .route-change-leave.route-change-leave-active {
   opacity: 0.01;
 }
-
-
-
-
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,700,600);
-@import '../../static/styles/reset';
-
 
 .structure--main {
   display: flex;
