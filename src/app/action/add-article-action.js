@@ -9,19 +9,19 @@ class ArticleAction {
   changeTitle(title) {
     Dispatcher.dispatch({
       eventName: 'change-title', title
-    })
+    });
   }
 
   changeDesc(desc) {
     Dispatcher.dispatch({
       eventName: 'change-desc', desc
-    })
+    });
   }
 
   changeUrl(url) {
     Dispatcher.dispatch({
       eventName: 'change-url', url
-    })
+    });
   }
 
   addArticle() {
@@ -50,6 +50,18 @@ class ArticleAction {
         Dispatcher.dispatch({
           eventName: 'tag-suggestions', data
         });
+    });
+  }
+
+  showAdvancedForm() {
+    Dispatcher.dispatch({
+      eventName: 'show-advanced-form'
+    });
+  }
+
+  hideAdvancedForm() {
+    Dispatcher.dispatch({
+      eventName: 'hide-advanced-form'
     });
   }
 
