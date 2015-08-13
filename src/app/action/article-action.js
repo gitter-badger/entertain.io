@@ -12,34 +12,6 @@ class ArticleAction {
     })
   }
 
-  addArticle(article) {
-    ConnectionService.addArticle(article, (err, article) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      Dispatcher.dispatch({
-        eventName: 'add-article', article
-      });
-    });
-  }
-
-  fetchMetadata(url) {
-    ConnectionService.getPageMetadata(url, (err, data) => {
-      debug("get page metadata", err, data);
-      Dispatcher.dispatch({
-        eventName: 'metadata-update', data
-      });
-    });
-
-    ConnectionService.getTagSuggest(url, (err, data) => {
-      if (!err)
-        Dispatcher.dispatch({
-          eventName: 'tag-suggestions', data
-        });
-    });
-  }
-
   constructor() {
     this.latestArticles();
   }

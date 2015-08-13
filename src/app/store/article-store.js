@@ -13,24 +13,11 @@ class ArticleStore extends EventEmitter {
         break;
 
       case 'add-article':
-        this.addArticle(payload.article);
-        break;
-
-      case 'metadata-update':
-        this.emit('metadata-update', payload.data);
-        break;
-
-      case 'tag-suggestions':
-        this.emit('tag-suggestions', payload.data);
+        this.articles.unshift(article);
+        this.emit('change');
         break;
     }
   });
-
-  addArticle(article) {
-    this.articles.unshift(article);
-    this.emit('article-added');
-    this.emit('change');
-  }
 
   constructor() {
     super();
