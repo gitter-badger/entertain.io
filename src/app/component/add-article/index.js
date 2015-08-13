@@ -1,4 +1,5 @@
 import React, { Component, addons } from 'react/addons';
+const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 
 import ArticleStore from '~/src/app/store/article-store';
 import ArticleAction from '~/src/app/action/article-action';
@@ -24,7 +25,8 @@ export default class AddArticle extends Component {
       tags : {
         popular: [],
         recommended: []
-      }
+      },
+      togglActiveAddArticle: false
     }
   }
 
@@ -81,6 +83,12 @@ export default class AddArticle extends Component {
     ArticleAction.fetchMetadata(this.state.url);
   }
 
+  togglActiveAddArticle() {
+    this.setState({
+      togglActiveAddArticle: !this.state.togglActiveAddArticle
+    })
+  }
+
   render() {
 
     const articlePreview = (
@@ -112,11 +120,32 @@ export default class AddArticle extends Component {
       </div>
     );
 
+    const stuff = (
+      <div>
+        <span className='someSpan'>URL</span>
+
+        <input className='article-url' type='text' placeholder='Submit a new link...' value={this.state.url} onChange={this.changeUrl.bind(this)} />
+        <button onClick={this.togglActiveAddArticle.bind(this)}>Close</button>
+        <input className='add-article' type='submit'/>
+      </div>
+    );
+
+    const style = {};
+
+    if(this.state.togglActiveAddArticle === true) {
+      style.height = 100;
+    }
+
     return (
       <article className='component--add-article'>
-        <form key='add-article' onSubmit={this.fetchMetadata.bind(this)}>
-          <input className='article-url' type='text' placeholder='Give me some Article-URL' value={this.state.url} onChange={this.changeUrl.bind(this)} />
-          <input className='add-article' type='submit'/>
+        <form key='add-article' ref="addArticleForm" style={style} onSubmit={this.fetchMetadata.bind(this)}>
+          <input type='text' className='article-url' onFocus={this.togglActiveAddArticle.bind(this)} placeholder='Write something...' />
+
+          <ReactCSSTransitionGroup component="div" transitionName="route-change">
+            { this.state.togglActiveAddArticle ? stuff : '' }
+          </ReactCSSTransitionGroup>
+
+
         </form>
 
         { this.state.gotMetadata ? articlePreview : '' }
