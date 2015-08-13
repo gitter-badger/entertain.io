@@ -1,10 +1,9 @@
 import socketIOClient from 'socket.io-client';
 
 class CommunicationClient {
-  socket = socketIOClient.connect('http://127.0.0.1:8000', {
+  socket = socketIOClient.connect({
     path: '/ws'
   });
-
 
   latestArticles(callback) {
     this.socket.emit('latest-articles', callback);
@@ -23,6 +22,7 @@ class CommunicationClient {
   }
 
   currentUser(callback) {
+    console.log("get current user");
     this.socket.emit('current-user', callback);
   }
 

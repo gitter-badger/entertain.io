@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import UserStore from '../../store/user-store';
+import ArticleAction from '../../action/article-action';
 
 require('./style.scss');
 
 export default class Article extends Component {
 
+  upvote(event) {
+    ArticleAction.upvote(this.props, this.props.idx, UserStore.user);
+  }
+  
   render() {
     let twitter = this.props.shareCount && this.props.shareCount.Twitter
       ? this.props.shareCount.Twitter : '-';
@@ -12,6 +18,9 @@ export default class Article extends Component {
       ? this.props.shareCount.Facebook.total_count : '-';
     let google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
+
+    let upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
+    upvotePossible = true;
 
     return (
       <article className="article">
@@ -21,6 +30,9 @@ export default class Article extends Component {
               <img src={''} />
             </a>
             <div className="TODO">
+              {upvotePossible ? (<button onClick={this.upvote.bind(this)}>upvote</button>) : ''}
+              Upvotes: {this.props.upvotes}
+
               Twitter: {twitter},
               Facebook: {facebook},
               Google+: {google}

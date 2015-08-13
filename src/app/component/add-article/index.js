@@ -16,7 +16,7 @@ export default class AddArticle extends Component {
   }
 
   tagSuggestionUpdate(data) {
-    console.log("tagSuggestionUpdate", data);
+    //console.log("tagSuggestionUpdate", data);
     this.setState({tags : data});
   }
 
@@ -57,7 +57,7 @@ export default class AddArticle extends Component {
 
   showActiveAddArticle() {
     if(!this.state.showAdvancedForm) {
-      console.log('show');
+      //console.log('show');
       AddArticleAction.showAdvancedForm();
     }
   }

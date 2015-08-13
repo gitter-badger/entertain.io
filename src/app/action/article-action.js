@@ -4,6 +4,12 @@ import ConnectionService from '../service/connection';
 const debug = Debug('app:article-action');
 
 class ArticleAction {
+  upvote(article, articleIdx, user) {
+    Dispatcher.dispatch({
+      eventName: 'upvote-article', article, articleIdx, user
+    });
+  }
+
   latestArticles() {
     ConnectionService.latestArticles((err, articles) => {
       Dispatcher.dispatch({

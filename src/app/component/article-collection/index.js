@@ -37,8 +37,8 @@ export default class ArticleCollection extends Component {
       <div>
         <AddArticle />
         <section className="component--article-collection">
-          {this.state.articles.map((article) =>
-              <Article key={article._id} {...article}/>
+          {this.state.articles.map((article, idx) =>
+              <Article key={article._id} {...article} idx={idx}/>
           )}
         </section>
       </div>

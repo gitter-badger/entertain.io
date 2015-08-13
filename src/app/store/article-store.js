@@ -16,6 +16,11 @@ class ArticleStore extends EventEmitter {
         this.articles.unshift(article);
         this.emit('change');
         break;
+
+      case 'upvote-article':
+        this.articles[payload.articleIdx].upvotes += 1;
+        this.emit('change');
+        break;
     }
   });
 

@@ -13,7 +13,17 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
     }
 
     getLatestArticles(callback) {
-      storage.latestArticles(callback);
+      storage.latestArticles((err, articles) => {
+        if (err) return callback(err);
+        else {
+          articles = articles.map((article) => {
+            if (article.upvotes) // old db entires
+              article.upvotes = article.upvotes.length;
+            return article;
+          });
+          callback(null, articles);
+        }
+      });
     }
 
     addArticle(article, session, callback) {
@@ -25,10 +35,10 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
         article.shareCount = shareCount;
 
         storage.addArticle(article, session.user.username, (err, article) => {
-          console.log("-- article", err, article);
           session.user.articles.push(article._id);
           session.save();
           storage.saveUser(session.user, (err) => {
+            article.upvotes = article.upvotes.length;
             callback(err, article);
           });
         });
