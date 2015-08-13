@@ -1,7 +1,10 @@
 import socketIOClient from 'socket.io-client';
 
 class CommunicationClient {
-  socket = socketIOClient({path : '/ws'}); // connect
+  socket = socketIOClient.connect('http://127.0.0.1:8000', {
+    path: '/ws'
+  });
+
 
   latestArticles(callback) {
     this.socket.emit('latest-articles', callback);
