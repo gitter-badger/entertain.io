@@ -64,7 +64,7 @@ export default class AddArticle extends Component {
   }
 
   bodyClick(e) {
-    if(e.target.className.indexOf('component--article-collection') !== -1) {
+    if(e.target.className.indexOf('body') !== -1 || e.target.className.length === 0) {
       this.setState({
         showAddArticle: false
       });
@@ -105,7 +105,7 @@ export default class AddArticle extends Component {
     );
 
     const stuff = (
-      <div>
+      <div className='foobar'>
         <span className='someSpan'>URL</span>
         <input className='article-url' type='text' placeholder='Submit a new link...' value={this.state.article.url} onChange={this.changeUrl.bind(this)} />
         <input className='add-article' type='submit'/>
