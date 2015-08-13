@@ -54,13 +54,17 @@ class AddArticleStore extends EventEmitter {
         this.emit('change');
         break;
 
-      case 'show-advanced-form':
-        this.state.showAdvancedForm = true;
-        this.emit('change');
+      case 'body-click':
+        if(payload.domEvent.target.className.indexOf('body') !== -1 || payload.domEvent.target.className.length === 0) {
+          if(this.state.showAdvancedForm && !this.state.article.url) {
+            this.state.showAdvancedForm = false;
+            this.emit('change');
+          }
+        }
         break;
 
-      case 'hide-advanced-form':
-        this.state.showAdvancedForm = false;
+      case 'show-advanced-form':
+        this.state.showAdvancedForm = true;
         this.emit('change');
         break;
     }

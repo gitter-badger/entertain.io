@@ -26,7 +26,6 @@ export default class AddArticle extends Component {
 
   componentDidMount() {
     AddArticleStore.on('change', this.storeChanged.bind(this));
-    MainStore.on('body-clicked', this.bodyClick.bind(this))
   }
 
   componentWillUnmount() {
@@ -60,16 +59,6 @@ export default class AddArticle extends Component {
     if(!this.state.showAdvancedForm) {
       console.log('show');
       AddArticleAction.showAdvancedForm();
-    }
-  }
-
-  bodyClick(e) {
-    if(e.target.className.indexOf('body') !== -1 || e.target.className.length === 0) {
-      if(this.state.showAdvancedForm && !this.state.article.url) {
-        setTimeout(() => {
-          AddArticleAction.hideAdvancedForm();
-        });
-      }
     }
   }
 
@@ -107,8 +96,7 @@ export default class AddArticle extends Component {
 
     const addFormStyle = {};
     const advancedForm = (
-      <div className='foobar'>
-        <span className='someSpan'>URL</span>
+      <div className='advanced-form'>
         <input className='article-url' type='text' value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
         <input className='add-article' type='submit'/>
         { articlePreview }
@@ -123,8 +111,6 @@ export default class AddArticle extends Component {
       <article className='component--add-article'>
         <form key='add-article' ref="addArticleForm" style={addFormStyle} onSubmit={this.fetchMetadata.bind(this)}>
           <input type='text' className='article-url' onFocus={this.showActiveAddArticle.bind(this)} placeholder='Write something...' />
-          <span>--> {this.state.showAdvancedForm}</span>
-          {this.state.showAdvancedForm ? 'Ai' : 'Oi'}
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
             { this.state.showAdvancedForm ? advancedForm : '' }
           </ReactCSSTransitionGroup>
