@@ -20,7 +20,7 @@ export default class Main extends Component {
   }
 
   render() {
-    let name = this.context.router.getCurrentPath();
+    const pathName = this.context.router.getCurrentPath();
 
     return (
       <div className="structure--main">
@@ -37,7 +37,7 @@ export default class Main extends Component {
         </div>
         <div className="body" onClick={this.bodyClick.bind(this)}>
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
-            <RouteHandler key={name}/>
+            <RouteHandler key={pathName}/>
           </ReactCSSTransitionGroup>
         </div>
       </div>
