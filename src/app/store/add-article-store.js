@@ -18,7 +18,7 @@ class AddArticleStore extends EventEmitter {
         popular: [],
         recommended: []
       },
-      showAddArticle: false
+      showAdvancedForm: false
     }
   }
 
@@ -51,6 +51,16 @@ class AddArticleStore extends EventEmitter {
 
       case 'tag-suggestions':
         this.state.tags = payload.data;
+        this.emit('change');
+        break;
+
+      case 'show-advanced-form':
+        this.state.showAdvancedForm = true;
+        this.emit('change');
+        break;
+
+      case 'hide-advanced-form':
+        this.state.showAdvancedForm = false;
         this.emit('change');
         break;
     }
