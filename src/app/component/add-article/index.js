@@ -4,6 +4,7 @@ const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
 import AddArticleStore from '~/src/app/store/add-article-store';
 import AddArticleAction from '~/src/app/action/add-article-action';
 import Article from '~/src/app/component/article';
+import ArticlePreview from '~/src/app/component/article-preview';
 import MainStore from '~/src/app/store/main-store';
 
 require('./style.scss');
@@ -99,9 +100,9 @@ export default class AddArticle extends Component {
       <div className='advanced-form'>
         <input className='article-url' type='text' value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
         <input className='add-article' type='submit'/>
-        { articlePreview }
       </div>
     );
+        // <ArticlePreview {...this.state}/>
 
     if(this.state.showAdvancedForm === true) {
       addFormStyle.height = 100;
@@ -109,8 +110,8 @@ export default class AddArticle extends Component {
 
     return (
       <article className='component--add-article'>
-        <form key='add-article' ref="addArticleForm" style={addFormStyle} onSubmit={this.fetchMetadata.bind(this)}>
-          <input type='text' className='article-url' onFocus={this.showActiveAddArticle.bind(this)} placeholder='Write something...' />
+        <form className='add-article' key='add-article' ref="addArticleForm" style={addFormStyle} onSubmit={this.fetchMetadata.bind(this)}>
+          <textarea placeholder='Write something...' className='article-url' onFocus={this.showActiveAddArticle.bind(this)}></textarea>
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
             { this.state.showAdvancedForm ? advancedForm : '' }
           </ReactCSSTransitionGroup>
