@@ -41,7 +41,7 @@
     min-width: 100%;
     flex-grow: 1;
     overflow: auto;
-    background: #F5F5F5;
+    background: #fff;
   }
   .footer {
     height: 40px;
@@ -58,7 +58,7 @@
 
 %header {
   background: #fff;
-  box-shadow: 0 0 3px 0 rgba(0,0,0,0.4);
+  border-bottom: 1px solid #eee;
   height: 60px;
   min-height: 60px;
   align-items: center;
