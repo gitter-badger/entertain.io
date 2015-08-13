@@ -31,5 +31,5 @@ $main-color: red;
 }
 
 body {
-  @include theme('dark');
+  @include theme('light');
 }

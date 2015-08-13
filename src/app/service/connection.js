@@ -34,10 +34,6 @@ class CommunicationClient {
     this.socket.emit('logout', callback);
   }
 
-  register(username, password, callback) {
-    this.socket.emit('register', username, password, callback);
-  }
-
   constructor() {
     // for debugging
     window.socket = this.socket;
