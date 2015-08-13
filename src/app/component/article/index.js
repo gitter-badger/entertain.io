@@ -6,20 +6,18 @@ import { Link } from 'react-router';
 
 require('./style.scss');
 
-
-
-
 export default class Article extends Component {
 
   upvote(event) {
     ArticleAction.upvote(this.props, this.props.idx, UserStore.user);
   }
+
   render() {
-    let twitter = this.props.shareCount && this.props.shareCount.Twitter
+    const twitter = this.props.shareCount && this.props.shareCount.Twitter
       ? this.props.shareCount.Twitter : '-';
-    let facebook = this.props.shareCount && this.props.shareCount.Facebook && this.props.shareCount.Facebook.total_count
+    const facebook = this.props.shareCount && this.props.shareCount.Facebook && this.props.shareCount.Facebook.total_count
       ? this.props.shareCount.Facebook.total_count : '-';
-    let google = this.props.shareCount && this.props.shareCount.GooglePlusOne
+    const google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
 
     let upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
@@ -57,7 +55,6 @@ export default class Article extends Component {
       </article>
     );
   }
-
 }
 
 
