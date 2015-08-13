@@ -40,9 +40,9 @@ export default class Main extends Component {
             <RouteHandler key={name}/>
           </ReactCSSTransitionGroup>
         </div>
-        <div className="footer"></div>
       </div>
     );
+    // <div className="footer"></div>
   }
 
 }
