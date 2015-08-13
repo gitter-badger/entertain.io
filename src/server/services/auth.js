@@ -26,6 +26,20 @@ export default function create({storage}) {
       callback(null);
     }
 
+    register(username, password, callback) {
+      storage.getUser(username, (err, _user) => {
+        if (!err) return callback('User already exists');
+        else {
+          let user = {
+            username,
+            password,
+            articles : []
+          };
+          storage.saveUser(user, callback);
+        }
+      });
+    }
+
     areCredentialsCorrect(user, password) {
       return user.password === password;
     }

@@ -45,6 +45,8 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
       auth.logout(session, callback);
     }
 
+    register = auth.register.bind(auth.register);
+
     currentUser(session, callback) {
       if (session.auth) callback(null, session.user);
       else callback('Not Authenticated');
