@@ -1,13 +1,12 @@
 .component--add-article {
-  height: 100px;
   width: 600px;
   margin: auto;
+  // height: 50px;
   form {
     transition: 1s;
     height: 50px;
   }
   .article-url {
-    // background: transparent;
     border: 0;
     font-size: 14px;
     outline: 0;
