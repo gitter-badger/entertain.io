@@ -1,25 +1,44 @@
-%wire {
-  // border: 1px solid;
-}
-
 .component--article {
-  @extend %wire;
   width: 600px;
   display: flex;
   flex-direction: row;
   border-top: 1px solid #eee;
   padding: 25px 0;
   .meta {
-    @extend %wire;
     border-color: green;
     width: 45px;
     min-width: 45px;
+    margin-top: 65px;
+    .points {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .counter {
+        display: inline-block;
+        color: #a6a6a6;
+        font-size: 12px;
+        line-height: 26px;
+      }
+      .vote {
+        height: 11px;
+        width: 12px;
+        background: url('../../static/images/vote.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: block;
+        border: 0;
+        cursor: pointer;
+        outline: 0;
+        transition: .2s;
+        &.down {
+          transform: rotate(180deg);
+        }
+      }
+    }
   }
   .main {
     flex-grow: 1;
-    @extend %wire;
     .info {
-      @extend %wire;
       display: flex;
       flex-direction: row;
       .avatar {
@@ -54,7 +73,6 @@
       }
     }
     .text {
-      @extend %wire;
       color: #3b3b3b;
       font-size: 14px;
       margin: {
@@ -64,14 +82,13 @@
       }
     }
     .content {
-      @extend %wire;
       box-shadow: inset -7px -96px 92px -3px rgba(0,0,0,0.6);
       height: 200px;
       display: flex;
       transition: .5s;
       text-decoration: none;
       &:hover {
-        box-shadow: inset -7px -96px 92px -3px rgba(0,0,0,0.5);
+        box-shadow: inset -7px -96px 92px -3px rgba(0,0,0,1);
       }
       .body {
         align-self: flex-end;

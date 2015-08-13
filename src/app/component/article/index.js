@@ -20,8 +20,8 @@ export default class Article extends Component {
     const google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
 
-    let upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
-    upvotePossible = true;
+    const  upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
+    const upvotePossible = true;
 
 
     const contentStyle = {
@@ -31,8 +31,11 @@ export default class Article extends Component {
     return (
       <article className="component--article">
         <div className='meta'>
-          {upvotePossible ? (<button onClick={this.upvote.bind(this)}>upvote</button>) : ''}
-          Upvotes: {this.props.upvotes}
+          <div className='points'>
+            <button className='vote' onClick={this.upvote.bind(this)}></button>
+            <span className='counter'>{this.props.upvotes}</span>
+            <button className='vote down'></button>
+          </div>
         </div>
         <div className='main'>
           <div className='info'>
