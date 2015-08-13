@@ -35,6 +35,9 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['react-hot-loader', 'babel-loader?stage=0'],
         include: path.resolve('src/app')
+      }, {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        loader: "file-loader"
       }
     ]
   }
