@@ -12,7 +12,6 @@ export default class AddArticle extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = AddArticleStore.state;
   }
 
@@ -58,21 +57,23 @@ export default class AddArticle extends Component {
   }
 
   showActiveAddArticle() {
-    this.setState({
-      showAddArticle: true
-    })
+    if(!this.state.showAdvancedForm) {
+      console.log('show');
+      AddArticleAction.showAdvancedForm();
+    }
   }
 
   bodyClick(e) {
     if(e.target.className.indexOf('body') !== -1 || e.target.className.length === 0) {
-      this.setState({
-        showAddArticle: false
-      });
+      if(this.state.showAdvancedForm && !this.state.article.url) {
+        setTimeout(() => {
+          AddArticleAction.hideAdvancedForm();
+        });
+      }
     }
   }
 
   render() {
-
     const articlePreview = (
       <div className='article-preview'>
         <div className='contents'>
@@ -104,28 +105,28 @@ export default class AddArticle extends Component {
       </div>
     );
 
-    const stuff = (
+    const addFormStyle = {};
+    const advancedForm = (
       <div className='foobar'>
         <span className='someSpan'>URL</span>
-        <input className='article-url' type='text' placeholder='Submit a new link...' value={this.state.article.url} onChange={this.changeUrl.bind(this)} />
+        <input className='article-url' type='text' value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
         <input className='add-article' type='submit'/>
+        { articlePreview }
       </div>
     );
-        // { articlePreview }
 
-    const style = {};
-
-    if(this.state.showAddArticle === true) {
-      style.height = 100;
+    if(this.state.showAdvancedForm === true) {
+      addFormStyle.height = 100;
     }
 
     return (
       <article className='component--add-article'>
-        <form key='add-article' ref="addArticleForm" style={style} onSubmit={this.fetchMetadata.bind(this)}>
+        <form key='add-article' ref="addArticleForm" style={addFormStyle} onSubmit={this.fetchMetadata.bind(this)}>
           <input type='text' className='article-url' onFocus={this.showActiveAddArticle.bind(this)} placeholder='Write something...' />
-
+          <span>--> {this.state.showAdvancedForm}</span>
+          {this.state.showAdvancedForm ? 'Ai' : 'Oi'}
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
-            { this.state.showAddArticle ? stuff : '' }
+            { this.state.showAdvancedForm ? advancedForm : '' }
           </ReactCSSTransitionGroup>
         </form>
       </article>
