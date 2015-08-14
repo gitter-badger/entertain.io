@@ -20,13 +20,12 @@ export default class Article extends Component {
     const google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
 
-    let  upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
-    upvotePossible = true;
-
+    let upvotePossible = UserStore.loggedIn && UserStore.user.articles.hasOwnProperty(this.props._id);
+    console.log("UserStore.user.articles, this.props._id", UserStore.user.articles, this.props._id);
 
     const contentStyle = {
       backgroundImage: `url(${this.props.image})`
-    }
+    };
 
     return (
       <article className="component--article">

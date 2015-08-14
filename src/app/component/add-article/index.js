@@ -101,6 +101,10 @@ export default class AddArticle extends Component {
           <i className='write'></i>
           <input placeholder='Add some text' className='article-text'/>
         </div>
+        <input placeholder='Add some text' className='article-text'/>
+        <input className='publish-article' type='submit' value='Fetch'/>
+        <button className='publish-article'onClick={this.add.bind(this)}>add</button>
+
         <Indicator/>
       </div>
     );

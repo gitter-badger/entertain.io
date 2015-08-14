@@ -13,23 +13,13 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
     }
 
     getLatestArticles(callback) {
-      storage.latestArticles((err, articles) => {
-        if (err) return callback(err);
-        else {
-          articles = articles.map((article) => {
-            if (article.upvotes) // old db entires
-              article.upvotes = article.upvotes.length;
-            return article;
-          });
-          callback(null, articles);
-        }
-      });
+      storage.latestArticles(callback);
     }
 
     addArticle(article, session, callback) {
       if (!session.auth) return callback('auth missing!');
 
-      article.upvotes = [session.user.username];
+      article.upvotes = 1;
 
       shareCount(article.url, (err, shareCount) => {
         article.shareCount = shareCount;
@@ -38,7 +28,6 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
           session.user.articles.push(article._id);
           session.save();
           storage.saveUser(session.user, (err) => {
-            article.upvotes = article.upvotes.length;
             callback(err, article);
           });
         });
