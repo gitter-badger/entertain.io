@@ -47,7 +47,7 @@ export default class Article extends Component {
               <span className='posted'>{moment(this.props.date).fromNow()}</span>
             </div>
           </div>
-          <div className='text'>Is this real life or just a fanta-sea?</div>
+          <div className='text'>{this.props.text}</div>
           <a className='content' style={contentStyle} href={this.props.url} target="_blank">
             <div className='body'>
               <h3 className="headline">{this.props.title}</h3>

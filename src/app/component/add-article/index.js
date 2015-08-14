@@ -45,6 +45,10 @@ export default class AddArticle extends Component {
     AddArticleAction.changeUrl(event.target.value);
   }
 
+  changeText(event) {
+    AddArticleAction.changeText(event.target.value);
+  }
+
   add(event) {
     event.preventDefault();
     AddArticleAction.addArticle();
@@ -57,7 +61,6 @@ export default class AddArticle extends Component {
 
   showActiveAddArticle() {
     if(!this.state.showAdvancedForm) {
-      //console.log('show');
       AddArticleAction.showAdvancedForm();
     }
   }
@@ -99,11 +102,11 @@ export default class AddArticle extends Component {
       <div className='advanced-form'>
         <div className='article-text-block'>
           <i className='write'></i>
-          <input placeholder='Add some text' className='article-text'/>
+          <input placeholder='Add some text' className='article-text' value={this.state.article.text} onChange={this.changeText.bind(this)}/>
         </div>
         <button className='publish-article'onClick={this.add.bind(this)}>add</button>
 
-        { this.state.loading ? <Indicator/> : '' } 
+        { this.state.loading ? <Indicator/> : '' }
       </div>
     );
 
