@@ -13,7 +13,8 @@ export default function create() {
       let nodes = {
         image: $("meta[property='og:image']"),
         title: $("meta[property='og:title']"),
-        description: $("meta[property='og:description']")
+        description: $("meta[property='og:description']"),
+        url: $("meta[property='og:url']")
       };
 
       let result = {};
@@ -26,6 +27,9 @@ export default function create() {
       }
       if (nodes.description.length === 1) {
         result.desc = nodes.description[0].attribs["content"]
+      }
+      if (nodes.url.length === 1) {
+        result.url = nodes.url[0].attribs["content"]
       }
 
       callback(null, result);
