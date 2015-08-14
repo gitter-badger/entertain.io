@@ -20,8 +20,8 @@ export default class Article extends Component {
     const google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
 
-    const  upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
-    const upvotePossible = true;
+    let  upvotePossible = UserStore.loggedIn && UserStore.user.username === this.props.owner;
+    upvotePossible = true;
 
 
     const contentStyle = {
@@ -59,47 +59,3 @@ export default class Article extends Component {
     );
   }
 }
-
-
-// <div className="meta">
-//   <div className="meta-subscription-logo">
-//     <a href={''} target="_blank">
-//       <img src={''} />
-//     </a>
-//     <div className="TODO">
-//       Twitter: {twitter},
-//       Facebook: {facebook},
-//       Google+: {google}
-//     </div>
-//   </div>
-//   <div className="meta-data">
-//     <div className="author">
-//       <span className="author-by">By</span>
-//       <span className="author-name">{this.props.owner}</span>
-//     </div>
-//     <div className="publish-date">
-//       <span>{moment(this.props.date).format('h:mm:ss a')}</span>
-//     </div>
-//   </div>
-// </div>
-//
-// <div className="media">
-//   <a href={this.props.url} target="_blank">
-//     { this.props.image ? <img src={this.props.image} /> : '' }
-//   </a>
-// </div>
-//
-// <div className="article-body">
-//   <a className="headline" href={this.props.url} target="_blank">{this.props.title}</a>
-//   <p className="description">{this.props.desc}</p>
-// </div>
-//
-// <div className="info-bar">
-//   <div className="actions">
-//     <span className="star">0</span>
-//     <span className="comment">0</span>
-//   </div>
-//   <div className="read-more">
-//     <a className="text" href={this.props.url} target="_blank">More</a>
-//   </div>
-// </div>
