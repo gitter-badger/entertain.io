@@ -31,10 +31,13 @@ module.exports = {
     loaders: [{
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass?sourceMap")
-      },{
+      }, {
         test: /\.jsx?$/,
         loaders: ['babel-loader?stage=0'],
         include: path.resolve('src/app')
+      }, {
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
+        loader: "file-loader"
       }
     ]
   }
