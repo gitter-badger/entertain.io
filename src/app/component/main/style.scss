@@ -19,6 +19,21 @@
   opacity: 0.01;
 }
 
+
+i {
+  width: 10px;
+  height: 10px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  &.url {
+    background-image: url('../../static/images/url.svg');
+  }
+  &.write {
+    background-image: url('../../static/images/write.svg');
+  }
+}
+
 .structure--main {
   display: flex;
   align-items: stretch;
