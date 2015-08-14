@@ -18,13 +18,13 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
 
     upvote(articleId, session, callback) {
       if (!session.auth) return callback('auth missing!');
-      //if (session.user.articles.)
+      if (session.user.articles.filter(x => x === articleId).length > 0) return callback('already upvoted');
 
       session.user.articles.push(articleId);
 
       session.save();
       storage.saveUser(session.user, (err) => {
-        callback(err, article);
+        callback(err);
       });
     }
 
