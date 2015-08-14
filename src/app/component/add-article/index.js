@@ -5,6 +5,7 @@ import AddArticleStore from '~/src/app/store/add-article-store';
 import AddArticleAction from '~/src/app/action/add-article-action';
 import Article from '~/src/app/component/article';
 import ArticlePreview from '~/src/app/component/article-preview';
+import Indicator from '~/src/app/component/indicator';
 
 require('./style.scss');
 
@@ -96,7 +97,11 @@ export default class AddArticle extends Component {
     const addFormStyle = {};
     const advancedForm = (
       <div className='advanced-form'>
-        <input placeholder='Add some text' className='article-text'/>
+        <div className='article-text-block'>
+          <i className='write'></i>
+          <input placeholder='Add some text' className='article-text'/>
+        </div>
+        <Indicator/>
       </div>
     );
 
@@ -104,7 +109,7 @@ export default class AddArticle extends Component {
         // <ArticlePreview {...this.state}/>
 
     if(this.state.showAdvancedForm === true) {
-      addFormStyle.height = 80;
+      addFormStyle.height = 180;
     } else {
       addFormStyle.height = 50;
     }
@@ -112,7 +117,10 @@ export default class AddArticle extends Component {
     return (
       <article className='component--add-article'>
         <form className='add-article' key='add-article' ref="addArticleForm" style={addFormStyle} onSubmit={this.fetchMetadata.bind(this)}>
-          <input placeholder='Post new link' className='article-url' type='text' onFocus={this.showActiveAddArticle.bind(this)} value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
+          <div className='article-url-block'>
+            <i className='url'></i>
+            <input placeholder='Post new link' className='article-url' type='url' onFocus={this.showActiveAddArticle.bind(this)} value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
+          </div>
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
             { this.state.showAdvancedForm ? advancedForm : '' }
           </ReactCSSTransitionGroup>
