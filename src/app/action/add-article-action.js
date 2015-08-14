@@ -19,6 +19,7 @@ class ArticleAction {
   }
 
   changeUrl(url) {
+    this.fetchMetadata(url);
     Dispatcher.dispatch({
       eventName: 'change-url', url
     });
