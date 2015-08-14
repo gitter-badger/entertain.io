@@ -5,6 +5,10 @@ class CommunicationClient {
     path: '/ws'
   });
 
+  upvote(articleId, callback) {
+    this.socket.emit('upvote', articleId, callback);
+  }
+
   latestArticles(callback) {
     this.socket.emit('latest-articles', callback);
   }

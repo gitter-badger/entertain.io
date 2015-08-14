@@ -37,6 +37,10 @@ export default function create({server, action}) {
           action.addArticle(article, socket.request.session, callback);
         });
 
+        socket.on('upvote', (articleId, callback) => {
+          action.upvote(articleId, socket.request.session, callback);
+        })
+
       });
     }
   }

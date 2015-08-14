@@ -5,8 +5,11 @@ const debug = Debug('app:article-action');
 
 class ArticleAction {
   upvote(article, articleIdx, user) {
-    Dispatcher.dispatch({
-      eventName: 'upvote-article', article, articleIdx, user
+    ConnectionService.upvote(article._id, (err) => {
+      if (err) debug('Err upvote()', err);
+      else Dispatcher.dispatch({
+        eventName: 'upvote-article', article, articleIdx, user
+      });
     });
   }
 

@@ -16,6 +16,18 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
       storage.latestArticles(callback);
     }
 
+    upvote(articleId, session, callback) {
+      if (!session.auth) return callback('auth missing!');
+      //if (session.user.articles.)
+
+      session.user.articles.push(articleId);
+
+      session.save();
+      storage.saveUser(session.user, (err) => {
+        callback(err, article);
+      });
+    }
+
     addArticle(article, session, callback) {
       if (!session.auth) return callback('auth missing!');
 

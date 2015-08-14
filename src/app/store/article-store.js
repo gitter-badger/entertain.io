@@ -13,7 +13,7 @@ class ArticleStore extends EventEmitter {
         break;
 
       case 'add-article':
-        this.articles.unshift(article);
+        this.articles.unshift(payload.article);
         this.emit('change');
         break;
 
