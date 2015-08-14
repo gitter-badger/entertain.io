@@ -1,4 +1,4 @@
-import {MongoClient} from 'mongodb';
+import {MongoClient, ObjectId} from 'mongodb';
 import * as when from 'when';
 import * as nodeFn from 'when/node';
 
@@ -6,6 +6,8 @@ const MongoClientQ = nodeFn.liftAll(MongoClient);
 
 export default class MongoQ {
   _db = undefined;
+
+  static ObjectId = ObjectId;
 
   constructor(...args) {
     this._conQ = MongoClientQ.connect(...args)

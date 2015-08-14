@@ -21,6 +21,26 @@ export default function create() {
         })
     }
 
+    getArticle(id, callback) {
+      this.mongo.db()
+        .then((db) => {
+          return db.collection('articles').findOne(MongoQ.ObjectId(id))
+        })
+        .then((article) => {
+          callback(null, article);
+        })
+        .catch((err) => {
+          callback(err);
+        })
+    }
+
+    saveArticle(article, callback) {
+      this.mongo.db()
+        .then(db => db.collection('articles').save(article))
+        .then(article => callback(null, article))
+        .catch(err => callback(err));
+    }
+
     addArticle(article, username, callback) {
       article.date = new Date();
       article.owner = username;

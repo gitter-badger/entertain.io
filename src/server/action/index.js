@@ -22,10 +22,16 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
 
       session.user.articles.push(articleId);
 
-      session.save();
-      storage.saveUser(session.user, (err) => {
-        callback(err);
+      storage.getArticle(articleId, (err, article) => {
+        article.upvotes += 1;
+        storage.saveArticle(article, (err, article) => {
+          session.save();
+          storage.saveUser(session.user, (err) => {
+            callback(err);
+          });
+        })
       });
+
     }
 
     addArticle(article, session, callback) {

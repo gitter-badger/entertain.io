@@ -21,8 +21,7 @@ export default class Article extends Component {
     const google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
 
-    let alreadyUpvoted = UserStore.user.articles.filter(x => x === this.props._id).length > 0;
-    let upvotePossible = UserStore.loggedIn && alreadyUpvoted;
+    let upvotePossible = UserStore.loggedIn && UserStore.user.articles.filter(x => x === this.props._id).length > 0;
 
 
     const contentStyle = {
@@ -33,7 +32,7 @@ export default class Article extends Component {
       <article className="component--article">
         <div className='meta'>
           <div className='points'>
-            <button className={classNames('vote', {'already-voted' : alreadyUpvoted})} disabled={upvotePossible} onClick={this.upvote.bind(this)}></button>
+            <button className={classNames('vote', {'already-voted' : upvotePossible})} disabled={upvotePossible} onClick={this.upvote.bind(this)}></button>
             <span className='counter'>{this.props.upvotes}</span>
             <button className='vote down'></button>
           </div>

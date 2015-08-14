@@ -87,8 +87,13 @@
       display: flex;
       transition: .5s;
       text-decoration: none;
+
+      background-size: cover;
+      background-position-y: center;
+
       &:hover {
-        box-shadow: inset -7px -96px 92px -3px rgba(0,0,0,1);
+        box-shadow: inset 0px -50px 92px -30px rgba(0,0,0,1);
+        filter: brightness(3.0) saturate(4.0);
       }
       .body {
         align-self: flex-end;
@@ -97,7 +102,7 @@
         .headline {
           font-size: 18px;
           color: #fff;
-          font-weight: bold;
+          font-weight: 400;
         }
         .desc {
           color: #fff;
