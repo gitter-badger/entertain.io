@@ -48,7 +48,14 @@
         width: 25px;
         height: 25px;
         position: relative;
-        img {
+        .image {
+          background: {
+            size: contain;
+            repeat: no-repeat;
+            image: url('../../static/images/user.svg');
+          }
+          margin-top: 3px;
+          height: 100%;
           width: 100%;
         }
       }

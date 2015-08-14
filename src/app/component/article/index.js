@@ -48,6 +48,11 @@ export default class Article extends Component {
       backgroundImage: `url(${this.props.image})`
     };
 
+    const avatarStyle = {
+      // Default
+      // backgroundImage: `url('../../static/images/user.svg')`
+    }
+
     return (
       <article className="component--article">
         <div className='meta'>
@@ -60,7 +65,7 @@ export default class Article extends Component {
         <div className='main'>
           <div className='info'>
             <div className='avatar'>
-              <img src='https://cdn-images-1.medium.com/fit/c/72/72/0*CUkJSOwJ_wnHcDct.png' />
+              <div className='image' style={ avatarStyle }></div>
             </div>
             <div>
               <Link className='username' to={`/@${this.props.owner}`}>{this.props.owner}</Link>
