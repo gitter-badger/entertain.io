@@ -1,0 +1,17 @@
+.indicator {
+  display: flex;
+  align-items: center;
+  .loader {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    background: url('../../static/images/indicator.svg');
+    background-size: contain;
+  }
+  .text {
+    font-size: 12px;
+    margin-top: 3px;
+    margin-left: 5px;
+    color: #aaa;
+  }
+}
