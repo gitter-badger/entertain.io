@@ -5,7 +5,6 @@ import AddArticleStore from '~/src/app/store/add-article-store';
 import AddArticleAction from '~/src/app/action/add-article-action';
 import Article from '~/src/app/component/article';
 import ArticlePreview from '~/src/app/component/article-preview';
-import MainStore from '~/src/app/store/main-store';
 
 require('./style.scss');
 
@@ -105,6 +104,8 @@ export default class AddArticle extends Component {
 
     if(this.state.showAdvancedForm === true) {
       addFormStyle.height = 100;
+    } else {
+      addFormStyle.height = 50;
     }
 
     return (
