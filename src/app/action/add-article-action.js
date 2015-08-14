@@ -25,6 +25,12 @@ class ArticleAction {
     });
   }
 
+  changeText(text) {
+    Dispatcher.dispatch({
+      eventName: 'change-text', text
+    });
+  }
+
   addArticle() {
     let article = AddArticleStore.state.article;
     ConnectionService.addArticle(article, (err, article) => {

@@ -45,6 +45,10 @@ export default class AddArticle extends Component {
     AddArticleAction.changeUrl(event.target.value);
   }
 
+  changeText(event) {
+    AddArticleAction.changeText(event.target.value);
+  }
+
   add(event) {
     event.preventDefault();
     AddArticleAction.addArticle();

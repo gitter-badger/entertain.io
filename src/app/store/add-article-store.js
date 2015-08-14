@@ -11,7 +11,8 @@ class AddArticleStore extends EventEmitter {
         title: '',
         desc: '',
         url: '',
-        image: ''
+        image: '',
+        text: ''
       },
       gotMetadata : false,
       tags : {
@@ -37,6 +38,11 @@ class AddArticleStore extends EventEmitter {
       case 'change-url':
         this.state.article.url = payload.url;
         this.state.loading = true;
+        this.emit('change');
+        break;
+
+      case 'change-text':
+        this.state.article.text = payload.text;
         this.emit('change');
         break;
 
@@ -79,7 +85,6 @@ class AddArticleStore extends EventEmitter {
         break;
     }
   });
-
 }
 
 export default new AddArticleStore();
