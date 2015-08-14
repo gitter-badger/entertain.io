@@ -29,6 +29,25 @@
   i {
     @extend %icon;
   }
+
+  .publish-article {
+    display: inline-block;
+    padding: 10px;
+    border: 0;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'open sans';
+    margin-top: 1.5em;
+    color: #1ab0c6;;
+    background: rgba(0,0,0,0);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.15);
+    white-space: nowrap;
+    border-radius: 999em;
+  }
+
   .add-article {
     transition: .3s;
     .article-text {
@@ -44,11 +63,6 @@
     }
     .article-url {
       @extend %text-field;
-    }
-    .publish-article {
-      display: block;
-      padding: 10px;
-      border: 0;
     }
   }
 }

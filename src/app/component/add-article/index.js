@@ -101,9 +101,8 @@ export default class AddArticle extends Component {
           <i className='write'></i>
           <input placeholder='Add some text' className='article-text'/>
         </div>
-        <button className='publish-article'onClick={this.add.bind(this)}>add</button>
+        <button className='publish-article' onClick={this.add.bind(this)}>Publish Article</button>
 
-        { this.state.loading ? <Indicator/> : '' } 
       </div>
     );
 
@@ -123,6 +122,7 @@ export default class AddArticle extends Component {
           <div className='article-url-block'>
             <i className='url'></i>
             <input placeholder='Post new link' className='article-url' type='url' onFocus={this.showActiveAddArticle.bind(this)} value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
+            { this.state.loading ? <Indicator/> : '' }
           </div>
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
             { this.state.showAdvancedForm ? advancedForm : '' }

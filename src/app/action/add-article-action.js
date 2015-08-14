@@ -40,7 +40,6 @@ class ArticleAction {
 
   fetchMetadata(url) {
     ConnectionService.getPageMetadata(url, (err, data) => {
-      debug("get page metadata", err, data);
       Dispatcher.dispatch({
         eventName: 'metadata-update', data
       });
