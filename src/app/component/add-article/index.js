@@ -31,7 +31,6 @@ export default class AddArticle extends Component {
 
   componentWillUnmount() {
     AddArticleStore.removeListener('change', this.storeChanged.bind(this));
-    MainStore.removeListener('body-clicked', this.bodyClick.bind(this))
   }
 
   changeTitle(event) {
