@@ -55,7 +55,7 @@ class AddArticleStore extends EventEmitter {
         break;
 
       case 'body-click':
-        if(payload.domEvent.target.className.indexOf('body') !== -1 || payload.domEvent.target.className.length === 0) {
+        if(payload.domEvent.target.className.indexOf('component--article-collection') !== -1 || payload.domEvent.target.className.length === 0) {
           if(this.state.showAdvancedForm && !this.state.article.url) {
             this.state.showAdvancedForm = false;
             this.emit('change');
