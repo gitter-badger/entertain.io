@@ -97,6 +97,8 @@ export default class AddArticle extends Component {
     const advancedForm = (
       <div className='advanced-form'>
         <input placeholder='Add some text' className='article-text'/>
+        <input className='publish-article' type='submit' value='Fetch'/>
+        <button className='publish-article'onClick={this.add.bind(this)}>add</button>
       </div>
     );
 
@@ -104,7 +106,7 @@ export default class AddArticle extends Component {
         // <ArticlePreview {...this.state}/>
 
     if(this.state.showAdvancedForm === true) {
-      addFormStyle.height = 80;
+      addFormStyle.height = 140;
     } else {
       addFormStyle.height = 50;
     }

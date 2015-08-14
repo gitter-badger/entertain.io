@@ -40,10 +40,11 @@ class AddArticleStore extends EventEmitter {
         break;
 
       case 'metadata-update':
+        console.log("metadata-update", payload);
         this.state.article = {
-          title : payload.title,
-          desc : payload.desc,
-          image : payload.image
+          title : payload.data.title,
+          desc : payload.data.desc,
+          image : payload.data.image
         };
         this.state.gotMetadata = true;
         this.emit('change');
