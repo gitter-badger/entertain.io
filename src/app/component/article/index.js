@@ -4,13 +4,33 @@ import UserStore from '../../store/user-store';
 import ArticleAction from '../../action/article-action';
 import { Link } from 'react-router';
 import classNames from 'classnames';
+import inViewport from 'in-viewport';
 
 require('./style.scss');
+
 
 export default class Article extends Component {
 
   upvote(event) {
     ArticleAction.upvote(this.props, this.props.idx, UserStore.user);
+  }
+
+  componentDidMount() {
+
+  }
+
+  componentWillUnmount() {
+
+  }
+
+  componentDidMount() {
+    let content = React.findDOMNode(this.refs.content);
+
+    inViewport(content, (el) => {
+      console.log("visible", el);
+      el.className +=" inview";
+    });
+
   }
 
   render() {
@@ -48,7 +68,7 @@ export default class Article extends Component {
             </div>
           </div>
           <div className='text'>{this.props.text}</div>
-          <a className='content' style={contentStyle} href={this.props.url} target="_blank">
+          <a className='content' style={contentStyle} href={this.props.url} ref="content" target="_blank">
             <div className='body'>
               <h3 className="headline">{this.props.title}</h3>
               <p className="desc">{this.props.desc}</p>
