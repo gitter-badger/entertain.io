@@ -96,14 +96,15 @@ export default class AddArticle extends Component {
     const addFormStyle = {};
     const advancedForm = (
       <div className='advanced-form'>
-        <input className='article-url' type='text' value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
-        <input className='add-article' type='submit'/>
+        <input placeholder='Add some text' className='article-text'/>
       </div>
     );
+
+        // <input className='publish-article' type='submit' value='Publish'/>
         // <ArticlePreview {...this.state}/>
 
     if(this.state.showAdvancedForm === true) {
-      addFormStyle.height = 100;
+      addFormStyle.height = 80;
     } else {
       addFormStyle.height = 50;
     }
@@ -111,7 +112,7 @@ export default class AddArticle extends Component {
     return (
       <article className='component--add-article'>
         <form className='add-article' key='add-article' ref="addArticleForm" style={addFormStyle} onSubmit={this.fetchMetadata.bind(this)}>
-          <textarea placeholder='Write something...' className='article-url' onFocus={this.showActiveAddArticle.bind(this)}></textarea>
+          <input placeholder='Post new link' className='article-url' type='text' onFocus={this.showActiveAddArticle.bind(this)} value={this.state.article.url} onChange={this.changeUrl.bind(this)}/>
           <ReactCSSTransitionGroup component="div" transitionName="route-change">
             { this.state.showAdvancedForm ? advancedForm : '' }
           </ReactCSSTransitionGroup>
