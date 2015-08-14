@@ -36,6 +36,7 @@ class AddArticleStore extends EventEmitter {
 
       case 'change-url':
         this.state.article.url = payload.url;
+        this.state.loading = true;
         this.emit('change');
         break;
 
@@ -44,9 +45,11 @@ class AddArticleStore extends EventEmitter {
         this.state.article = {
           title : payload.data.title,
           desc : payload.data.desc,
-          image : payload.data.image
+          image : payload.data.image,
+          url : payload.data.url,
         };
         this.state.gotMetadata = true;
+        this.state.loading = false;
         this.emit('change');
         break;
 
