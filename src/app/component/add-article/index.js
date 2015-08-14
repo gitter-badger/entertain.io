@@ -1,5 +1,6 @@
 import React, { Component, addons } from 'react/addons';
 const ReactCSSTransitionGroup = addons.CSSTransitionGroup;
+import "babel-core/polyfill";
 
 import AddArticleStore from '~/src/app/store/add-article-store';
 import AddArticleAction from '~/src/app/action/add-article-action';
@@ -17,7 +18,6 @@ export default class AddArticle extends Component {
   }
 
   tagSuggestionUpdate(data) {
-    //console.log("tagSuggestionUpdate", data);
     this.setState({tags : data});
   }
 
@@ -101,14 +101,13 @@ export default class AddArticle extends Component {
           <i className='write'></i>
           <input placeholder='Add some text' className='article-text'/>
         </div>
-        <input placeholder='Add some text' className='article-text'/>
-        <input className='publish-article' type='submit' value='Fetch'/>
         <button className='publish-article'onClick={this.add.bind(this)}>add</button>
 
-        <Indicator/>
+        { this.state.loading ? <Indicator/> : '' } 
       </div>
     );
 
+        // <input className='publish-article' type='submit' value='Fetch'/>
         // <input className='publish-article' type='submit' value='Publish'/>
         // <ArticlePreview {...this.state}/>
 
