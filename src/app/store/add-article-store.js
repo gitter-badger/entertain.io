@@ -52,7 +52,7 @@ class AddArticleStore extends EventEmitter {
           title : payload.data.title,
           desc : payload.data.desc,
           image : payload.data.image,
-          url : payload.data.url
+          url : this.state.article.url,
         };
         this.state.gotMetadata = true;
         this.state.loading = false;
