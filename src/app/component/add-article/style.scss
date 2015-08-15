@@ -80,7 +80,6 @@
       letter-spacing: 0;
       font-weight: 400;
       font-style: normal;
-      color: rgba(0,0,0,0.8);
       background: #fafafa;
       border-radius: 3px;
       border: 1px solid #f0f0f0;
@@ -99,6 +98,18 @@
       line-height: 11px;
       padding-right: 0px;
       padding-left: 4px;
+    }
+
+    input {
+      padding: 3px 7px;
+      font-size: 11px;
+      letter-spacing: 0;
+      font-weight: 400;
+      font-style: normal;
+      margin: 8px 8px 0 0;
+      outline: none;
+      border: 1px solid white;
+      color: rgba(0,0,0,0.44);
     }
   }
 
