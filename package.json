@@ -9,7 +9,8 @@
     "babel-node": "babel-node --stage 0",
     "develop": "nodemon --exec npm run babel-node -- src/server",
     "production-build": "rimraf dist && webpack --config config/production.webpack.js",
-    "postinstall": "npm run production-build"
+    "postinstall": "npm run production-build",
+    "lint-scss": "scss-lint"
   },
   "repository": {
     "type": "git",
