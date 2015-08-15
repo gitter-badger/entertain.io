@@ -8,11 +8,32 @@
     border-color: green;
     width: 45px;
     min-width: 45px;
-    margin-top: 65px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .extra {
+      height: 65px;
+      display: block;
+      .remove {
+        outline: 0;
+        cursor: pointer;
+        margin-top: 3px;
+        border: 0;
+        height: 15px;
+        width: 15px;
+        background: {
+          color: transparent;
+          image: url('../../static/images/remove.svg');
+          size: contain;
+          repeat: no-repeat;
+        }
+        &:hover {
+          opacity: .5;
+        }
+      }
+    }
     .points {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
+      text-align: center;
       .counter {
         display: inline-block;
         color: #a6a6a6;
@@ -116,7 +137,7 @@
         .headline {
           font-size: 18px;
           color: #fff;
-          font-weight: 400;
+          font-weight: 600;
         }
         .desc {
           color: #fff;

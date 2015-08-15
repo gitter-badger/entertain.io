@@ -16,7 +16,9 @@ export default class Article extends Component {
   }
 
   removeArticle() {
-    ArticleAction.remove(this.props._id);
+    if(confirm('Do you want to delete this article?')) {
+      ArticleAction.remove(this.props._id);
+    }
   }
 
   componentDidMount() {
@@ -59,6 +61,9 @@ export default class Article extends Component {
     return (
       <article className="component--article">
         <div className='meta'>
+          <div className='extra'>
+            { upvotePossible ? <button onClick={this.removeArticle.bind(this)} className='remove'></button> : '' }
+          </div>
           <div className='points'>
             <button className={classNames('vote', {'already-voted' : upvotePossible})} disabled={upvotePossible} onClick={this.upvote.bind(this)}></button>
             <span className='counter'>{this.props.upvotes}</span>
@@ -75,7 +80,6 @@ export default class Article extends Component {
               <span className='posted'>{moment(this.props.date).fromNow()}</span>
             </div>
           </div>
-          <button onClick={this.removeArticle.bind(this)} className='text'>Remove</button>
           <div className='text'>{this.props.text}</div>
           <a className='content' style={contentStyle} href={this.props.url} ref="content" target="_blank">
             <div className='body'>

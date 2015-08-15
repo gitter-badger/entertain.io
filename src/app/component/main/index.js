@@ -32,7 +32,6 @@ export default class Main extends Component {
           <nav className="navigation">
             <Link to="/">Articles</Link>
             <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
           </nav>
         </div>
         <div className="body" onClick={this.bodyClick.bind(this)}>
