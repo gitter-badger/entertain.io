@@ -62,7 +62,6 @@ export default class AddArticle extends Component {
 
   showActiveAddArticle() {
     if(!this.state.showAdvancedForm) {
-      //console.log('show');
       AddArticleAction.showAdvancedForm();
     }
   }

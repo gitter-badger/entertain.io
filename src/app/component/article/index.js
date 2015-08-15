@@ -62,7 +62,7 @@ export default class Article extends Component {
       <article className="component--article">
         <div className='meta'>
           <div className='extra'>
-            <button onClick={this.removeArticle.bind(this)} className='remove'></button>
+            { upvotePossible ? <button onClick={this.removeArticle.bind(this)} className='remove'></button> : '' }
           </div>
           <div className='points'>
             <button className={classNames('vote', {'already-voted' : upvotePossible})} disabled={upvotePossible} onClick={this.upvote.bind(this)}></button>
