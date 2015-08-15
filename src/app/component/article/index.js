@@ -87,6 +87,10 @@ export default class Article extends Component {
               <p className="desc">{this.props.desc}</p>
             </div>
           </a>
+          <div className='tags'>
+            <span className='text'>Tags:</span>
+            {this.props.tags.map((tag, index) => <Link className='tag' to={`/tag/${tag}`}>{tag}</Link>)}
+          </div>
         </div>
       </article>
     );
