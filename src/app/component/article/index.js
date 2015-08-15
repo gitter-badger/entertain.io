@@ -11,7 +11,12 @@ require('./style.scss');
 export default class Article extends Component {
 
   upvote(event) {
-    ArticleAction.upvote(this.props, this.props.idx, UserStore.user);
+    console.log(event);
+    ArticleAction.upvote(this.props, this.props.idx, UserStore.user, (err) => {
+      if(err === 'auth missing!') {
+        alert('You have to login to vote articles')
+      }
+    });
   }
 
   removeArticle() {

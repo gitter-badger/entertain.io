@@ -4,12 +4,16 @@ import ConnectionService from '../service/connection';
 const debug = Debug('app:article-action');
 
 class ArticleAction {
-  upvote(article, articleIdx, user) {
+  upvote(article, articleIdx, user, callback) {
     ConnectionService.upvote(article._id, (err) => {
-      if (err) debug('Err upvote()', err);
-      else Dispatcher.dispatch({
-        eventName: 'upvote-article', article, articleIdx, user
-      });
+      if (err) {
+        debug('Err upvote()', err);
+        callback(err)
+      } else {
+        Dispatcher.dispatch({
+          eventName: 'upvote-article', article, articleIdx, user
+        });
+      }
     });
   }
 
