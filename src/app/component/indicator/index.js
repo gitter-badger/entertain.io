@@ -12,7 +12,7 @@ export default class Indicator extends Component {
     return (
       <div className="indicator">
         <div className='loader'></div>
-        <span className='text'>Loading...</span>
+        <span className='text'></span>
       </div>
     );
   }
