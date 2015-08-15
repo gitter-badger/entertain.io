@@ -8,7 +8,6 @@ import inViewport from 'in-viewport';
 
 require('./style.scss');
 
-
 export default class Article extends Component {
 
   upvote(event) {
