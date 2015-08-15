@@ -1,5 +1,3 @@
-///<reference path='../typing.d.ts'/>
-
 export default function create({storage}) {
 
   class AuthService {
