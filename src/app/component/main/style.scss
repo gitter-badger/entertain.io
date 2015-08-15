@@ -39,6 +39,9 @@ i {
   &.remove {
     background-image: url('../../static/images/remove.svg');
   }
+  &.tags {
+    background-image: url('../../static/images/tags.svg');
+  }
 }
 
 .structure--main {
