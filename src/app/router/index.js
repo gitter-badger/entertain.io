@@ -6,6 +6,7 @@ import ArticleCollection from '~/src/app/component/article-collection';
 import AddArticle from '~/src/app/component/add-article';
 import Login from '~/src/app/component/login';
 import UserProfile from '~/src/app/component/user-profile';
+import TagPage from '~/src/app/component/tag-page';
 
 
 export default class {
@@ -14,6 +15,7 @@ export default class {
       <Route path="/" handler={ArticleCollection}/>
       <Route path="/login" handler={Login}/>
       <Route path="/@:username" handler={UserProfile}/>
+      <Route path="/tag/:tag" handler={TagPage}/>
     </Route>
   );
 
