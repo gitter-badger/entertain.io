@@ -7,6 +7,7 @@ import AddArticleAction from '~/src/app/action/add-article-action';
 import Article from '~/src/app/component/article';
 import ArticlePreview from '~/src/app/component/article-preview';
 import Indicator from '~/src/app/component/indicator';
+import Tag from '~/src/app/component/tag';
 
 require('./style.scss');
 
@@ -107,15 +108,7 @@ export default class AddArticle extends Component {
           <input placeholder='Add some text' className='article-text' onChange={this.changeText.bind(this)}/>
         </div>
 
-        <div className='article-tags-block'>
-          <i className='tags'></i>
-          <div className='article-tags'>
-            {this.state.article.tags.map((tag, id) =>
-                (<span className='tag' key={id}>{tag}<button className='close'></button></span>)
-            )}
-            <input type='text' placeholder='Add Tag'/>
-          </div>
-        </div>
+        <Tag tags={this.state.article.tags}/>
 
         <button className='publish-article' onClick={this.add.bind(this)}>Publish Article</button>
 
