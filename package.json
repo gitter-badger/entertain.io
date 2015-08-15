@@ -10,7 +10,8 @@
     "develop": "nodemon --exec npm run babel-node -- src/server",
     "production-build": "rimraf dist && webpack --config config/production.webpack.js",
     "postinstall": "npm run production-build",
-    "lint-scss": "scss-lint"
+    "lint-scss": "scss-lint",
+    "lint-js": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -62,5 +63,10 @@
     "webpack-dev-server": "^1.10.1",
     "when": "^3.7.3",
     "xml2js": "^0.4.9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.1.30",
+    "eslint": "^1.1.0",
+    "eslint-plugin-react": "^3.2.2"
   }
 }
