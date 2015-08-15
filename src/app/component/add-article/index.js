@@ -106,7 +106,15 @@ export default class AddArticle extends Component {
           <i className='write'></i>
           <input placeholder='Add some text' className='article-text' onChange={this.changeText.bind(this)}/>
         </div>
+
+        <div className='tags'>
+          {this.state.article.tags.map((tag, id) =>
+              (<span className='tag' key={id}>{tag}<button className='close'>x</button></span>)
+          )}
+        </div>
+
         <button className='publish-article' onClick={this.add.bind(this)}>Publish Article</button>
+
 
       </div>
     );
@@ -116,7 +124,7 @@ export default class AddArticle extends Component {
         // <ArticlePreview {...this.state}/>
 
     if(this.state.showAdvancedForm === true) {
-      addFormStyle.height = 180;
+      addFormStyle.height = 220;
     } else {
       addFormStyle.height = 50;
     }

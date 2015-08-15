@@ -79,6 +79,11 @@ class AddArticleStore extends EventEmitter {
         break;
     }
   });
+
+  constructor() {
+    super();
+    window.addArticleStore = this;
+  }
 }
 
 export default new AddArticleStore();

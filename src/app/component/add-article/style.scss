@@ -23,9 +23,11 @@
   align-self: flex-start;
   overflow: hidden;
   margin-top: 15px;
+
   .article-text-block, .article-url-block {
     margin-left: 5px;
   }
+
   i {
     @extend %icon;
   }
@@ -66,4 +68,38 @@
       @extend %text-field;
     }
   }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    .tag {
+      border: 1px solid #f0f0f0;
+      padding: 3px 7px;
+      font-size: 11px;
+      letter-spacing: 0;
+      font-weight: 400;
+      font-style: normal;
+      color: rgba(0,0,0,0.8);
+      background: #fafafa;
+      border-radius: 3px;
+      border: 1px solid #f0f0f0;
+      margin: 8px 8px 0 0;
+      color: rgba(0,0,0,0.44);
+    }
+
+    .close {
+      box-shadow: none;
+      border-width: 0;
+      color: rgba(0,0,0,0.3);
+      background: #fafafa;
+      vertical-align: baseline;
+      margin: 1px;
+      font-size: 13px;
+      line-height: 11px;
+      padding-right: 0px;
+      padding-left: 4px;
+    }
+  }
+
 }
