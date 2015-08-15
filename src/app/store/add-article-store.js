@@ -77,6 +77,11 @@ class AddArticleStore extends EventEmitter {
         this.state.showAdvancedForm = true;
         this.emit('change');
         break;
+
+      case 'update-tags' :
+        this.state.article.tags = payload.tags;
+        this.emit('change');
+        break;
     }
   });
 

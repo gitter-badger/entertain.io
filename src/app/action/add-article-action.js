@@ -19,15 +19,23 @@ class ArticleAction {
   }
 
   changeUrl(url) {
-    this.fetchMetadata(url);
-    Dispatcher.dispatch({
-      eventName: 'change-url', url
-    });
+    if (AddArticleStore.state.article.url !== url) {
+      this.fetchMetadata(url);
+      Dispatcher.dispatch({
+        eventName: 'change-url', url
+      });
+    }
   }
 
   changeText(text) {
     Dispatcher.dispatch({
       eventName: 'change-text', text
+    });
+  }
+
+  updateTags(tags) {
+    Dispatcher.dispatch({
+      eventName: 'update-tags', tags
     });
   }
 

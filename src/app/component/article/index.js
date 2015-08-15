@@ -46,8 +46,8 @@ export default class Article extends Component {
     const google = this.props.shareCount && this.props.shareCount.GooglePlusOne
       ? this.props.shareCount.GooglePlusOne : '-';
 
-    let upvotePossible = UserStore.loggedIn && UserStore.user.articles.filter(x => x === this.props._id).length > 0;
-
+    const upvotePossible = UserStore.loggedIn && UserStore.user.articles.filter(x => x === this.props._id).length > 0;
+    const deletePossible = UserStore.loggedIn && this.props.owner === UserStore.user.username;
 
     const contentStyle = {
       backgroundImage: `url(${this.props.image})`
@@ -62,7 +62,7 @@ export default class Article extends Component {
       <article className="component--article">
         <div className='meta'>
           <div className='extra'>
-            { upvotePossible ? <button onClick={this.removeArticle.bind(this)} className='remove'></button> : '' }
+            { deletePossible ? <button onClick={this.removeArticle.bind(this)} className='remove'></button> : '' }
           </div>
           <div className='points'>
             <button className={classNames('vote', {'already-voted' : upvotePossible})} disabled={upvotePossible} onClick={this.upvote.bind(this)}></button>
