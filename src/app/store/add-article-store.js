@@ -12,13 +12,10 @@ class AddArticleStore extends EventEmitter {
         desc: '',
         url: '',
         image: '',
-        text: ''
+        text: '',
+        tags : []
       },
       gotMetadata : false,
-      tags : {
-        popular: [],
-        recommended: []
-      },
       showAdvancedForm: false
     }
   }
@@ -54,19 +51,16 @@ class AddArticleStore extends EventEmitter {
           break;
         }
 
-        this.state.article = {
-          title : payload.data.title,
-          desc : payload.data.desc,
-          image : payload.data.image,
-          url : this.state.article.url
-        };
+        this.state.article.title = payload.data.title;
+        this.state.article.desc = payload.data.desc;
+        this.state.article.image = payload.data.image;
 
         this.state.gotMetadata = true;
         this.emit('change');
         break;
 
       case 'tag-suggestions':
-        this.state.tags = payload.data;
+        this.state.article.tags = payload.data.popular.concat(payload.data.recommended);
         this.emit('change');
         break;
 

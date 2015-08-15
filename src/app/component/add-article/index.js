@@ -67,6 +67,7 @@ export default class AddArticle extends Component {
   }
 
   render() {
+
     const articlePreview = (
       <div className='article-preview'>
         <div className='contents'>
@@ -83,8 +84,8 @@ export default class AddArticle extends Component {
           <div className='article-detail'>
             <label>Tags</label>
             <ul className='tags'>
-              {this.state.tags.popular.concat(this.state.tags.recommended).map((tag, id) =>
-                (<li key={id} className="popular">{tag}</li>)
+              {this.state.article.tags.map((tag, id) =>
+                (<li key={id}>{tag}</li>)
               )}
             </ul>
           </div>
@@ -103,7 +104,7 @@ export default class AddArticle extends Component {
       <div className='advanced-form'>
         <div className='article-text-block'>
           <i className='write'></i>
-          <input placeholder='Add some text' className='article-text'/>
+          <input placeholder='Add some text' className='article-text' onChange={this.changeText.bind(this)}/>
         </div>
         <button className='publish-article' onClick={this.add.bind(this)}>Publish Article</button>
 

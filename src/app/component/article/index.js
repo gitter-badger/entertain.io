@@ -27,7 +27,6 @@ export default class Article extends Component {
     let content = React.findDOMNode(this.refs.content);
 
     inViewport(content, (el) => {
-      console.log("visible", el);
       el.className +=" inview";
     });
 
