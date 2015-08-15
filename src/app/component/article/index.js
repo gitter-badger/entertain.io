@@ -15,6 +15,10 @@ export default class Article extends Component {
     ArticleAction.upvote(this.props, this.props.idx, UserStore.user);
   }
 
+  removeArticle() {
+    ArticleAction.remove(this.props._id);
+  }
+
   componentDidMount() {
 
   }
@@ -47,6 +51,11 @@ export default class Article extends Component {
       backgroundImage: `url(${this.props.image})`
     };
 
+    const avatarStyle = {
+      // Default
+      // backgroundImage: `url('../../static/images/user.svg')`
+    }
+
     return (
       <article className="component--article">
         <div className='meta'>
@@ -59,13 +68,14 @@ export default class Article extends Component {
         <div className='main'>
           <div className='info'>
             <div className='avatar'>
-              <img src='https://cdn-images-1.medium.com/fit/c/72/72/0*CUkJSOwJ_wnHcDct.png' />
+              <div className='image' style={ avatarStyle }></div>
             </div>
             <div>
               <Link className='username' to={`/@${this.props.owner}`}>{this.props.owner}</Link>
               <span className='posted'>{moment(this.props.date).fromNow()}</span>
             </div>
           </div>
+          <button onClick={this.removeArticle.bind(this)} className='text'>Remove</button>
           <div className='text'>{this.props.text}</div>
           <a className='content' style={contentStyle} href={this.props.url} ref="content" target="_blank">
             <div className='body'>

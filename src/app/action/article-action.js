@@ -18,7 +18,16 @@ class ArticleAction {
       Dispatcher.dispatch({
         eventName: 'latest-articles', articles
       });
-    })
+    });
+  }
+
+  remove(articleId) {
+    ConnectionService.remove(articleId, (err) => {
+      if (err) debug('Err remove()', err);
+      else Dispatcher.dispatch({
+        eventName: 'remove-article', articleId
+      });
+    });
   }
 
   constructor() {
