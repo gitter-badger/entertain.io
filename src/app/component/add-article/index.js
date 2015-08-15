@@ -18,10 +18,6 @@ export default class AddArticle extends Component {
     this.state = AddArticleStore.state;
   }
 
-  tagSuggestionUpdate(data) {
-    this.setState({tags : data});
-  }
-
   storeChanged() {
     this.setState(AddArticleStore.state);
   }
@@ -67,6 +63,10 @@ export default class AddArticle extends Component {
     }
   }
 
+  tagsModifyed(tags) {
+    AddArticleAction.updateTags(tags);
+  }
+
   render() {
 
     const articlePreview = (
@@ -108,7 +108,7 @@ export default class AddArticle extends Component {
           <input placeholder='Add some text' className='article-text' onChange={this.changeText.bind(this)}/>
         </div>
 
-        <Tag tags={this.state.article.tags}/>
+        <Tag tags={this.state.article.tags} tagsModifyed={this.tagsModifyed.bind(this)}/>
 
         <button className='publish-article' onClick={this.add.bind(this)}>Publish Article</button>
 

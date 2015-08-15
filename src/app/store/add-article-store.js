@@ -60,6 +60,7 @@ class AddArticleStore extends EventEmitter {
         break;
 
       case 'tag-suggestions':
+        console.log("got tag-suggestion");
         this.state.article.tags = payload.data.popular.concat(payload.data.recommended);
         this.emit('change');
         break;
@@ -75,6 +76,11 @@ class AddArticleStore extends EventEmitter {
 
       case 'show-advanced-form':
         this.state.showAdvancedForm = true;
+        this.emit('change');
+        break;
+
+      case 'update-tags' :
+        this.state.article.tags = payload.tags;
         this.emit('change');
         break;
     }

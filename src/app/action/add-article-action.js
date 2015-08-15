@@ -31,6 +31,12 @@ class ArticleAction {
     });
   }
 
+  updateTags(tags) {
+    Dispatcher.dispatch({
+      eventName: 'update-tags', tags
+    });
+  }
+
   addArticle() {
     let article = AddArticleStore.state.article;
     ConnectionService.addArticle(article, (err, article) => {
