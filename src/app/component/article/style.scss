@@ -8,11 +8,28 @@
     border-color: green;
     width: 45px;
     min-width: 45px;
-    margin-top: 65px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .extra {
+      height: 65px;
+      display: block;
+      .remove {
+        cursor: pointer;
+        margin-top: 3px;
+        border: 0;
+        height: 15px;
+        width: 15px;
+        background: {
+          color: transparent;
+          image: url('../../static/images/remove.svg');
+          size: contain;
+          repeat: no-repeat;
+        }
+      }
+    }
     .points {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
+      text-align: center;
       .counter {
         display: inline-block;
         color: #a6a6a6;
