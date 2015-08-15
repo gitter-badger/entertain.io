@@ -19,10 +19,12 @@ class ArticleAction {
   }
 
   changeUrl(url) {
-    this.fetchMetadata(url);
-    Dispatcher.dispatch({
-      eventName: 'change-url', url
-    });
+    if (AddArticleStore.state.article.url !== url) {
+      this.fetchMetadata(url);
+      Dispatcher.dispatch({
+        eventName: 'change-url', url
+      });
+    }
   }
 
   changeText(text) {

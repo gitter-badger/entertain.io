@@ -60,7 +60,6 @@ class AddArticleStore extends EventEmitter {
         break;
 
       case 'tag-suggestions':
-        console.log("got tag-suggestion");
         this.state.article.tags = payload.data.popular.concat(payload.data.recommended);
         this.emit('change');
         break;
