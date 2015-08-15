@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Register from '~/src/app/component/register';
 
 require('./style.scss');
 
@@ -57,6 +58,7 @@ export default class LoginComponent extends Component {
     return (
       <section className="component--login">
         {this.state.user.loggedIn ? loggedin : login}
+        <Register/>
       </section>
     );
   }
