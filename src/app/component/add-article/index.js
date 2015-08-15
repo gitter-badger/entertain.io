@@ -113,11 +113,11 @@ export default class AddArticle extends Component {
             {this.state.article.tags.map((tag, id) =>
                 (<span className='tag' key={id}>{tag}<button className='close'></button></span>)
             )}
+            <input type='text' placeholder='Add Tag'/>
           </div>
         </div>
 
         <button className='publish-article' onClick={this.add.bind(this)}>Publish Article</button>
-
 
       </div>
     );

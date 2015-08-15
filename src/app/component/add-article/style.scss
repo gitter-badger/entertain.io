@@ -95,7 +95,7 @@
       border-radius: 3px;
       border: 1px solid #f0f0f0;
       margin: 8px 8px 0 0;
-      color: rgba(0,0,0,0.44);
+      // color: rgba(0,0,0,0.44);
       height: 14px;
       text-transform: uppercase;
 
@@ -127,6 +127,18 @@
       line-height: 11px;
       padding-right: 0px;
       padding-left: 4px;
+    }
+
+    input {
+      padding: 3px 7px;
+      font-size: 11px;
+      letter-spacing: 0;
+      font-weight: 400;
+      font-style: normal;
+      margin: 8px 8px 0 0;
+      outline: none;
+      border: 1px solid white;
+      color: rgba(0,0,0,0.44);
     }
   }
 
