@@ -5,6 +5,10 @@ class CommunicationClient {
     path: '/ws'
   });
 
+  remove(articleId, callback) {
+    this.socket.emit('remove', articleId, callback);
+  }
+
   upvote(articleId, callback) {
     this.socket.emit('upvote', articleId, callback);
   }
@@ -26,7 +30,6 @@ class CommunicationClient {
   }
 
   currentUser(callback) {
-    console.log("get current user");
     this.socket.emit('current-user', callback);
   }
 

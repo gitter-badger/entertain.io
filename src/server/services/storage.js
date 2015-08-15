@@ -8,6 +8,21 @@ export default function create() {
 
     mongo = new MongoQ(MONGO_URI);
 
+    removeArticle(articleId, callback) {
+      this.mongo.db()
+        .then((db) => {
+          return db.collection('articles').remove({
+            _id: MongoQ.ObjectId(articleId)
+          })
+        })
+        .then(() => {
+          callback(null);
+        })
+        .catch((err) => {
+          callback(err);
+        })
+    }
+
     latestArticles(callback) {
       this.mongo.db()
         .then((db) => {

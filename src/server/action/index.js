@@ -31,7 +31,12 @@ export default function create({pageMetadata, storage, auth, tagSuggest, shareCo
           });
         })
       });
+    }
 
+    remove(articleId, session, callback) {
+      storage.removeArticle(articleId, (err, article) => {
+        callback(err);
+      });
     }
 
     addArticle(article, session, callback) {

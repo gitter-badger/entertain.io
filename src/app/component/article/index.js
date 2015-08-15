@@ -15,6 +15,10 @@ export default class Article extends Component {
     ArticleAction.upvote(this.props, this.props.idx, UserStore.user);
   }
 
+  removeArticle() {
+    ArticleAction.remove(this.props._id);
+  }
+
   componentDidMount() {
 
   }
@@ -72,6 +76,7 @@ export default class Article extends Component {
               <span className='posted'>{moment(this.props.date).fromNow()}</span>
             </div>
           </div>
+          <button onClick={this.removeArticle.bind(this)} className='text'>Remove</button>
           <div className='text'>{this.props.text}</div>
           <a className='content' style={contentStyle} href={this.props.url} ref="content" target="_blank">
             <div className='body'>

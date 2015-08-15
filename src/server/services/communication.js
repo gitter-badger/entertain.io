@@ -16,7 +16,7 @@ export default function create({server, action}) {
       this.io.on('connection', (socket) => {
 
         //console.log("socket.request.session", socket.request.session);
-        
+
         socket.on('register', action.register.bind(action));
 
         socket.on('login', (username, password, callback) => {
@@ -42,6 +42,10 @@ export default function create({server, action}) {
         socket.on('upvote', (articleId, callback) => {
           action.upvote(articleId, socket.request.session, callback);
         })
+
+        socket.on('remove', (articleId, callback) => {
+          action.remove(articleId, socket.request.session, callback);
+        });
 
       });
     }

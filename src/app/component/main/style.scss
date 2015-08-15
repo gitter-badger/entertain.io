@@ -36,6 +36,9 @@ i {
   &.write {
     background-image: url('../../static/images/write.svg');
   }
+  &.remove {
+    background-image: url('../../static/images/remove.svg');
+  }
 }
 
 .structure--main {
